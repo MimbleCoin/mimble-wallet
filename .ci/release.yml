@@ -34,13 +34,13 @@ steps:
     displayName: Github release
     condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'), eq(variables['CI_JOB'], 'release' ))
     inputs:
-      gitHubConnection: 'github.com_bayk'
-      repositoryName: 'mwcproject/mwc-wallet'
+      gitHubConnection: 'github.com_MimbleCoin'
+      repositoryName: 'MimbleCoin/mimble-wallet'
       action: 'edit'
       tagSource: "Git tag"
       tag: '$(build.my_tag)'
       assets: |
-        $(Build.ArtifactStagingDirectory)/mwc-wallet-$(build.my_tag)-$(build.platform).tar.gz
-        $(Build.ArtifactStagingDirectory)/mwc-wallet-$(build.my_tag)-$(build.platform)-sha256sum.txt
+        $(Build.ArtifactStagingDirectory)/mimble-wallet-$(build.my_tag)-$(build.platform).tar.gz
+        $(Build.ArtifactStagingDirectory)/mimble-wallet-$(build.my_tag)-$(build.platform)-sha256sum.txt
       assetUploadMode: 'replace'
       addChangeLog: true
