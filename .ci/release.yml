@@ -16,18 +16,18 @@ steps:
     condition:  and(succeeded(), contains(variables['Build.SourceBranch'], 'refs/tags/'), eq(variables['CI_JOB'], 'release' ))
     inputs:
       sourceFolder: '$(Build.SourcesDirectory)/target/release'
-      contents: 'mwc-wallet'
-      targetFolder: '$(Build.BinariesDirectory)/mwc-wallet'
+      contents: 'mimble-wallet'
+      targetFolder: '$(Build.BinariesDirectory)/mimble-wallet'
   - task: ArchiveFiles@2
     displayName: Gather assets
     condition:  and(succeeded(), contains(variables['Build.SourceBranch'], 'refs/tags/'), eq(variables['CI_JOB'], 'release' ))
     inputs:
-      rootFolderOrFile: '$(Build.BinariesDirectory)/mwc-wallet'
+      rootFolderOrFile: '$(Build.BinariesDirectory)/mimble-wallet'
       archiveType: 'tar'
       tarCompression: 'gz'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/mwc-wallet-$(build.my_tag)-$(build.platform).tar.gz'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/mimble-wallet-$(build.my_tag)-$(build.platform).tar.gz'
   - script: |
-      openssl sha256 $(Build.ArtifactStagingDirectory)/mwc-wallet-$(build.my_tag)-$(build.platform).tar.gz > $(Build.ArtifactStagingDirectory)/mwc-wallet-$(build.my_tag)-$(build.platform)-sha256sum.txt
+      openssl sha256 $(Build.ArtifactStagingDirectory)/mimble-wallet-$(build.my_tag)-$(build.platform).tar.gz > $(Build.ArtifactStagingDirectory)/mimble-wallet-$(build.my_tag)-$(build.platform)-sha256sum.txt
     displayName: Create Checksum
     condition:  and(succeeded(), contains(variables['Build.SourceBranch'], 'refs/tags/'), eq(variables['CI_JOB'], 'release' ))
   - task: GithubRelease@0
