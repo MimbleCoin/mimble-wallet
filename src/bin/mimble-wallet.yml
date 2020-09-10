@@ -1,15 +1,15 @@
 name: mwc-wallet
 version: "3.2.2"
-about: Reference MWC Wallet
-author: The MWC Team
+about: Reference Mimble Wallet
+author: The Mimble Team
 
 args:
   - floonet:
-      help: Run mwc against the Floonet (as opposed to mainnet)
+      help: Run mimble against the Floonet (as opposed to mainnet)
       long: floonet
       takes_value: false
   - usernet:
-      help: Run mwc as a local-only network. Doesn't block peer connections but will not connect to any peer or seed
+      help: Run mimble as a local-only network. Doesn't block peer connections but will not connect to any peer or seed
       long: usernet
       takes_value: false
   - pass:
@@ -24,7 +24,7 @@ args:
       takes_value: true
       default_value: default
   - top_level_dir:
-      help: Top directory in which wallet files are stored (location of 'mwc-wallet.toml')
+      help: Top directory in which wallet files are stored (location of 'mimble-wallet.toml')
       short: t
       long: top_level_dir
       takes_value: true
@@ -390,7 +390,7 @@ subcommands:
       about: Initialize a new wallet seed file and database
       args:
         - here:
-            help: Create wallet files in the current directory instead of the default ~/.mwc directory
+            help: Create wallet files in the current directory instead of the default ~/.mimble directory
             short: h
             long: here
             takes_value: false
@@ -469,7 +469,7 @@ subcommands:
             long: file
             takes_value: true
   - swap_start:
-      about: Start MWC atomic swap trading.
+      about: Start Mimble atomic swap trading.
       args:
         - mwc_amount:
             help: MWC amount to trade
@@ -545,7 +545,7 @@ subcommands:
             long: dest
             takes_value: true
   - swap:
-      about: Trade MWC with another currency via atomic swap
+      about: Trade Mimble with another currency via atomic swap
       args:
         - list:
             help: List SWAP trades
