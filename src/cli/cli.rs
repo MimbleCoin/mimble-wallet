@@ -35,8 +35,8 @@ use std::borrow::Cow::{self, Borrowed, Owned};
 use std::sync::Arc;
 use std::time::Duration;
 
-const COLORED_PROMPT: &'static str = "\x1b[36mmwc-wallet>\x1b[0m ";
-const PROMPT: &'static str = "mwc-wallet> ";
+const COLORED_PROMPT: &'static str = "\x1b[36mmimble-wallet>\x1b[0m ";
+const PROMPT: &'static str = "mimble-wallet> ";
 //const HISTORY_PATH: &str = ".history";
 
 // static for keeping track of current stdin buffer contents
@@ -123,12 +123,12 @@ where
 		let _ = reader.load_history(&history_file);
 	}*/
 
-	let yml = load_yaml!("../bin/mwc-wallet.yml");
+	let yml = load_yaml!("../bin/mimble-wallet.yml");
 	let mut app = App::from_yaml(yml).version(crate_version!());
 	let mut keychain_mask = keychain_mask;
 
 	// catch updater messages
-	// mwc updater thread is better, it will be created for None
+	// mimble updater thread is better, it will be created for None
 	let mut owner_api = Owner::new(wallet_inst, None, None);
 
 	// start the automatic updater
@@ -152,9 +152,9 @@ where
 					*contents = String::from("");
 				}
 
-				// Just add 'mwc-wallet' to each command behind the scenes
+				// Just add 'mimble-wallet' to each command behind the scenes
 				// so we don't need to maintain a separate definition file
-				let augmented_command = format!("mwc-wallet {}", command);
+				let augmented_command = format!("mimble-wallet {}", command);
 				let args =
 					app.get_matches_from_safe_borrow(augmented_command.trim().split_whitespace());
 				let done = match args {
