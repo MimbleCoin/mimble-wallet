@@ -57,7 +57,7 @@ pub(crate) use self::api::SwapApi;
 pub(crate) use self::buyer::BuyApi;
 pub(crate) use self::seller::SellApi;
 
-pub use grin_keychain::Keychain;
+pub use mimble_keychain::Keychain;
 
 #[cfg(test)]
 use serial_test::serial;
@@ -99,18 +99,18 @@ pub fn is_test_response() -> bool {
 
 #[cfg(test)]
 mod tests {
-	use crate::grin_util::{Mutex, RwLock};
+	use crate::mimble_util::{Mutex, RwLock};
 	use crate::{NodeClient, Slate, SlateVersion, VersionedSlate};
 	use bitcoin_lib::network::constants::Network as BtcNetwork;
 	use bitcoin_lib::util::key::PublicKey as BtcPublicKey;
 	use bitcoin_lib::{Address, Transaction as BtcTransaction, TxOut};
-	use grin_core::core::transaction::Weighting;
-	use grin_core::core::verifier_cache::LruVerifierCache;
-	use grin_core::core::{KernelFeatures, Transaction, TxKernel};
-	use grin_keychain::{ExtKeychain, Identifier, Keychain, SwitchCommitmentType};
-	use grin_util::secp::key::{PublicKey, SecretKey};
-	use grin_util::secp::pedersen::{Commitment, RangeProof};
-	use grin_util::to_hex;
+	use mimble_core::core::transaction::Weighting;
+	use mimble_core::core::verifier_cache::LruVerifierCache;
+	use mimble_core::core::{KernelFeatures, Transaction, TxKernel};
+	use mimble_keychain::{ExtKeychain, Identifier, Keychain, SwitchCommitmentType};
+	use mimble_util::secp::key::{PublicKey, SecretKey};
+	use mimble_util::secp::pedersen::{Commitment, RangeProof};
+	use mimble_util::to_hex;
 	use std::collections::HashMap;
 	use std::fs::{read_to_string, write};
 	use std::mem;
@@ -124,10 +124,10 @@ mod tests {
 	use crate::swap::fsm::machine::StateMachine;
 	use crate::swap::fsm::state::{Input, StateId, StateProcessRespond};
 	use crate::swap::message::{SecondaryUpdate, Update};
-	use grin_core::global;
-	use grin_core::global::ChainTypes;
+	use mimble_core::global;
+	use mimble_core::global::ChainTypes;
 
-	const GRIN_UNIT: u64 = 1_000_000_000;
+	const mimble_UNIT: u64 = 1_000_000_000;
 
 	fn keychain(idx: u8) -> ExtKeychain {
 		let seed_sell: String = format!("fixed0rng0for0testing0purposes0{}", idx % 10);
@@ -144,11 +144,11 @@ mod tests {
 			redeem_nonce: key(kc, 1, 3),
 			role_context: RoleContext::Seller(SellerContext {
 				inputs: vec![
-					(key_id(0, 1), None, 60 * GRIN_UNIT),
-					(key_id(0, 2), None, 60 * GRIN_UNIT),
+					(key_id(0, 1), None, 60 * mimble_UNIT),
+					(key_id(0, 2), None, 60 * mimble_UNIT),
 				],
 				change_output: key_id(0, 3),
-				change_amount: 20 * GRIN_UNIT, // selling 100 coins, so 20 will be left
+				change_amount: 20 * mimble_UNIT, // selling 100 coins, so 20 will be left
 				refund_output: key_id(0, 4),
 				secondary_context: SecondarySellerContext::Btc(BtcSellerContext {
 					cosign: key_id(0, 5),
@@ -300,7 +300,7 @@ mod tests {
 		}
 		fn get_connected_peer_info(
 			&self,
-		) -> Result<Vec<grin_p2p::types::PeerInfoDisplayLegacy>, crate::Error> {
+		) -> Result<Vec<mimble_p2p::types::PeerInfoDisplayLegacy>, crate::Error> {
 			unimplemented!()
 		}
 		fn height_range_to_pmmr_indices(
@@ -315,7 +315,7 @@ mod tests {
 			_start_height: u64,
 			_end_height: u64,
 			_threads_number: usize,
-		) -> Result<Vec<grin_api::BlockPrintable>, crate::Error> {
+		) -> Result<Vec<mimble_api::BlockPrintable>, crate::Error> {
 			unimplemented!()
 		}
 		fn reset_cache(&self) {
@@ -435,7 +435,7 @@ mod tests {
 			.create_swap_offer(
 				&kc_sell,
 				&ctx_sell,
-				100 * GRIN_UNIT,
+				100 * mimble_UNIT,
 				3_000_000,
 				Currency::Btc,
 				secondary_redeem_address,
@@ -494,7 +494,7 @@ mod tests {
 		let nc = TestNodeClient::new(300_000);
 		let btc_nc = TestBtcNodeClient::new(500_000);
 
-		let amount = 100 * GRIN_UNIT;
+		let amount = 100 * mimble_UNIT;
 		let btc_amount_1 = 2_000_000;
 		let btc_amount_2 = 1_000_000;
 		let btc_amount = btc_amount_1 + btc_amount_2;
@@ -1533,7 +1533,7 @@ mod tests {
 		let nc = TestNodeClient::new(300_000);
 		let btc_nc = TestBtcNodeClient::new(500_000);
 
-		let amount = 100 * GRIN_UNIT;
+		let amount = 100 * mimble_UNIT;
 		let btc_amount_1 = 2_000_000;
 		let btc_amount_2 = 1_000_000;
 		let btc_amount_plus = 10_000;

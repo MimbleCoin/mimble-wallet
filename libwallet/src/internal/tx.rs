@@ -16,13 +16,13 @@
 
 use uuid::Uuid;
 
-use crate::grin_core::consensus::valid_header_version;
-use crate::grin_core::core::HeaderVersion;
-use crate::grin_keychain::{Identifier, Keychain};
-use crate::grin_util as util;
-use crate::grin_util::secp::key::SecretKey;
-use crate::grin_util::secp::{pedersen, Secp256k1, Signature};
-use crate::grin_util::Mutex;
+use crate::mimble_core::consensus::valid_header_version;
+use crate::mimble_core::core::HeaderVersion;
+use crate::mimble_keychain::{Identifier, Keychain};
+use crate::mimble_util as util;
+use crate::mimble_util::secp::key::SecretKey;
+use crate::mimble_util::secp::{pedersen, Secp256k1, Signature};
+use crate::mimble_util::Mutex;
 use crate::internal::{selection, updater};
 use crate::proof::crypto;
 use crate::proof::crypto::Hex;
@@ -38,7 +38,7 @@ use ed25519_dalek::PublicKey as DalekPublicKey;
 use ed25519_dalek::SecretKey as DalekSecretKey;
 use ed25519_dalek::Signature as DalekSignature;
 use ed25519_dalek::{Signer, Verifier};
-use grin_wallet_util::OnionV3Address;
+use mimble_wallet_util::OnionV3Address;
 
 // static for incrementing test UUIDs
 lazy_static! {
@@ -736,9 +736,9 @@ where
 
 #[cfg(test)]
 mod test {
-	use crate::grin_core::core::KernelFeatures;
-	use crate::grin_core::libtx::{build, ProofBuilder};
-	use crate::grin_keychain::{ExtKeychain, ExtKeychainPath, Keychain};
+	use crate::mimble_core::core::KernelFeatures;
+	use crate::mimble_core::libtx::{build, ProofBuilder};
+	use crate::mimble_keychain::{ExtKeychain, ExtKeychainPath, Keychain};
 
 	#[test]
 	// demonstrate that input.commitment == referenced output.commitment

@@ -15,10 +15,10 @@
 //! Functions defining wallet 'addresses', i.e. ed2559 keys based on
 //! a derivation path
 
-use crate::grin_util::from_hex;
-use crate::grin_util::secp::key::SecretKey;
+use crate::mimble_util::from_hex;
+use crate::mimble_util::secp::key::SecretKey;
 use crate::{Error, ErrorKind};
-use grin_wallet_util::grin_keychain::{Identifier, Keychain};
+use mimble_wallet_util::mimble_keychain::{Identifier, Keychain};
 
 use data_encoding::BASE32;
 use ed25519_dalek::PublicKey as DalekPublicKey;

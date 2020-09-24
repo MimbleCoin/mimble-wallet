@@ -13,7 +13,7 @@
 // limitations under the License.
 
 use failure::Fail;
-use grin_util::secp;
+use mimble_util::secp;
 
 /// Multisig error
 #[derive(Clone, Eq, PartialEq, Debug, Fail)]

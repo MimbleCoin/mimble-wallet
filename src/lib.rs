@@ -19,9 +19,9 @@ extern crate clap;
 //#[macro_use]
 //extern crate log;
 
-use grin_wallet_config as config;
-use grin_wallet_util::grin_api as api;
-use grin_wallet_util::grin_util as util;
+use mimble_wallet_config as config;
+use mimble_wallet_util::mimble_api as api;
+use mimble_wallet_util::mimble_util as util;
 
 mod cli;
 pub mod cmd;

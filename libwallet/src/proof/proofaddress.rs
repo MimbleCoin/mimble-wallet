@@ -15,12 +15,12 @@
 use super::base58::Base58;
 use crate::address;
 use crate::error::Error;
-use crate::grin_util::secp::key::PublicKey;
+use crate::mimble_util::secp::key::PublicKey;
 use crate::proof::crypto;
 use ed25519_dalek::PublicKey as DalekPublicKey;
-use grin_core::global;
-use grin_wallet_util::grin_keychain::{Identifier, Keychain};
-use grin_wallet_util::OnionV3Address;
+use mimble_core::global;
+use mimble_wallet_util::mimble_keychain::{Identifier, Keychain};
+use mimble_wallet_util::OnionV3Address;
 use serde::{Deserialize, Deserializer, Serializer};
 use std::convert::TryFrom;
 use std::fmt::{self, Display};

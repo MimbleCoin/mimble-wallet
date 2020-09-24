@@ -1,10 +1,10 @@
 [package]
-name = "grin_wallet_libwallet"
+name = "mimble_wallet_libwallet"
 version = "3.2.2"
-authors = ["Grin Developers <mimblewimble@lists.launchpad.net>"]
+authors = ["Mimble Developers <Forkladdgud@protonmail.com>"]
 description = "Simple, private and scalable cryptocurrency implementation based on the MimbleWimble chain format."
 license = "Apache-2.0"
-repository = "https://github.com/mimblewimble/grin-wallet"
+repository = "https://github.com/MimbleCoin/mimble-wallet"
 keywords = [ "crypto", "grin", "mimblewimble" ]
 exclude = ["**/*.grin", "**/*.grin2"]
 #build = "src/build/build.rs"
@@ -42,30 +42,30 @@ bitcoin = { version = "0.19", git = "https://github.com/mwcproject/rust-bitcoin"
 bitcoin_hashes = { version = "0.7", features = ["serde"] }
 serial_test = "0.4.0"
 
-grin_wallet_util = { path = "../util", version = "3.2.2" }
-grin_wallet_config = { path = "../config", version = "3.2.2" }
+mimble_wallet_util = { path = "../util", version = "3.2.2" }
+mimble_wallet_config = { path = "../config", version = "3.2.2" }
 
 # Release
-#grin_api = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
-#grin_p2p = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
-#grin_core= { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
-#grin_keychain = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
-#grin_util = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
+#mimble_api = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
+#mimble_p2p = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
+#mimble_core= { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
+#mimble_keychain = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
+#mimble_util = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
 
 # For bleeding edge
-grin_api = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
-grin_p2p = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
-grin_core= { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
-grin_keychain = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
-grin_util = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master"  }
+mimble_api = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
+mimble_p2p = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
+mimble_core= { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
+mimble_keychain = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
+mimble_util = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master"  }
 
 
 # For local testing
-#grin_api = { path = "../../mwc-node/api"}
-#grin_p2p = { path = "../../mwc-node/p2p"}
-#grin_core= { path = "../../mwc-node/core"}
-#grin_keychain = { path = "../../mwc-node/keychain"}
-#grin_util = { path = "../../mwc-node/util"}
+#mimble_api = { path = "../../mimble-node/api"}
+#mimble_p2p = { path = "../../mimble-node/p2p"}
+#mimble_core= { path = "../../mimble-node/core"}
+#mimble_keychain = { path = "../../mimble-node/keychain"}
+#mimble_util = { path = "../../mimble-node/util"}
 
 
 [target.'cfg(any(target_os = "android", target_os = "linux"))'.dependencies]

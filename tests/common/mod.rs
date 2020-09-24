@@ -12,11 +12,11 @@
 // limitations under the License.
 
 //! Common functions for wallet integration tests
-extern crate mwc_wallet;
+extern crate mimble_wallet;
 
-use grin_wallet_config as config;
-use grin_wallet_impls::test_framework::LocalWalletClient;
-use grin_wallet_util::grin_util as util;
+use mimble_wallet_config as config;
+use mimble_wallet_impls::test_framework::LocalWalletClient;
+use mimble_wallet_util::mimble_util as util;
 
 use clap::{App, ArgMatches};
 use std::path::PathBuf;
@@ -24,17 +24,17 @@ use std::sync::Arc;
 use std::{env, fs};
 use util::{Mutex, ZeroingString};
 
-use grin_wallet_api::{EncryptedRequest, EncryptedResponse, JsonId};
-use grin_wallet_config::{GlobalWalletConfig, WalletConfig, GRIN_WALLET_DIR};
-use grin_wallet_impls::{DefaultLCProvider, DefaultWalletImpl};
-use grin_wallet_libwallet::{NodeClient, WalletInfo, WalletInst};
-use grin_wallet_util::grin_core::global::{self, ChainTypes};
-use grin_wallet_util::grin_keychain::ExtKeychain;
-use grin_wallet_util::grin_util::{from_hex, static_secp_instance};
+use mimble_wallet_api::{EncryptedRequest, EncryptedResponse, JsonId};
+use mimble_wallet_config::{GlobalWalletConfig, WalletConfig, MIMBLE_WALLET_DIR};
+use mimble_wallet_impls::{DefaultLCProvider, DefaultWalletImpl};
+use mimble_wallet_libwallet::{NodeClient, WalletInfo, WalletInst};
+use mimble_wallet_util::mimble_core::global::{self, ChainTypes};
+use mimble_wallet_util::mimble_keychain::ExtKeychain;
+use mimble_wallet_util::mimble_util::{from_hex, static_secp_instance};
 use util::secp::key::{PublicKey, SecretKey};
 
-use grin_wallet_util::grin_api as api;
-use mwc_wallet::cmd::wallet_args;
+use mimble_wallet_util::mimble_api as api;
+use mimble_wallet::cmd::wallet_args;
 
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
@@ -56,15 +56,15 @@ macro_rules! setup_proxy {
 		let $chain = wallet_proxy.chain.clone();
 
 		// load app yaml. If it don't exist, just say so and exit
-		let yml = load_yaml!("../src/bin/mwc-wallet.yml");
+		let yml = load_yaml!("../src/bin/mimble-wallet.yml");
 		let app = App::from_yaml(yml);
 
 		// wallet init
-		let arg_vec = vec!["mwc-wallet", "-p", "password", "init", "-h"];
+		let arg_vec = vec!["mimble-wallet", "-p", "password", "init", "-h"];
 		// should create new wallet file
 		let $client1 = LocalWalletClient::new("wallet1", wallet_proxy.tx.clone());
 
-		let target = std::path::PathBuf::from(format!("{}/wallet1/mwc-wallet.toml", $test_dir));
+		let target = std::path::PathBuf::from(format!("{}/wallet1/mimble-wallet.toml", $test_dir));
 		println!("{:?}", target);
 		if !target.exists() {
 			execute_command(&app, $test_dir, "wallet1", &$client1, arg_vec.clone())?;
@@ -91,7 +91,7 @@ macro_rules! setup_proxy {
 		// Create wallet 2, which will run a listener
 		let $client2 = LocalWalletClient::new("wallet2", wallet_proxy.tx.clone());
 
-		let target = std::path::PathBuf::from(format!("{}/wallet2/mwc-wallet.toml", $test_dir));
+		let target = std::path::PathBuf::from(format!("{}/wallet2/mimble-wallet.toml", $test_dir));
 		if !target.exists() {
 			execute_command(&app, $test_dir, "wallet2", &$client2, arg_vec.clone())?;
 			}
@@ -138,7 +138,7 @@ pub fn setup(test_dir: &str) {
 pub fn config_command_wallet(
 	dir_name: &str,
 	wallet_name: &str,
-) -> Result<(), grin_wallet_controller::Error> {
+) -> Result<(), mimble_wallet_controller::Error> {
 	let mut current_dir;
 	let mut default_config = GlobalWalletConfig::default();
 	current_dir = env::current_dir().unwrap_or_else(|e| {
@@ -148,10 +148,10 @@ pub fn config_command_wallet(
 	current_dir.push(wallet_name);
 	let _ = fs::create_dir_all(current_dir.clone());
 	let mut config_file_name = current_dir.clone();
-	config_file_name.push("mwc-wallet.toml");
+	config_file_name.push("mimble-wallet.toml");
 	if config_file_name.exists() {
-		return Err(grin_wallet_controller::ErrorKind::ArgumentError(
-			"mwc-wallet.toml already exists in the target directory. Please remove it first"
+		return Err(mimble_wallet_controller::ErrorKind::ArgumentError(
+			"mimble-wallet.toml already exists in the target directory. Please remove it first"
 				.to_owned(),
 		))?;
 	}
@@ -180,7 +180,7 @@ pub fn initial_setup_wallet(dir_name: &str, wallet_name: &str) -> GlobalWalletCo
 	current_dir.push(wallet_name);
 	let _ = fs::create_dir_all(current_dir.clone());
 	let mut config_file_name = current_dir.clone();
-	config_file_name.push("mwc-wallet.toml");
+	config_file_name.push("mimble-wallet.toml");
 	GlobalWalletConfig::new(config_file_name.to_str().unwrap()).unwrap()
 }
 
@@ -225,7 +225,7 @@ pub fn instantiate_wallet(
 		>,
 		Option<SecretKey>,
 	),
-	grin_wallet_controller::Error,
+	mimble_wallet_controller::Error,
 > {
 	wallet_config.chain_type = None;
 	let mut wallet = Box::new(DefaultWalletImpl::<LocalWalletClient>::new(node_client).unwrap())
@@ -237,11 +237,11 @@ pub fn instantiate_wallet(
 			>,
 		>;
 	let lc = wallet.lc_provider().unwrap();
-	// legacy hack to avoid the need for changes in existing mwc-wallet.toml files
+	// legacy hack to avoid the need for changes in existing mimble-wallet.toml files
 	// remove `wallet_data` from end of path as
-	// new lifecycle provider assumes grin_wallet.toml is in root of data directory
+	// new lifecycle provider assumes mimble_wallet.toml is in root of data directory
 	let mut top_level_wallet_dir = PathBuf::from(wallet_config.clone().data_file_dir);
-	if top_level_wallet_dir.ends_with(GRIN_WALLET_DIR) {
+	if top_level_wallet_dir.ends_with(MIMBLE_WALLET_DIR) {
 		top_level_wallet_dir.pop();
 		wallet_config.data_file_dir = top_level_wallet_dir.to_str().unwrap().into();
 	}
@@ -267,7 +267,7 @@ pub fn execute_command(
 	wallet_name: &str,
 	client: &LocalWalletClient,
 	arg_vec: Vec<&str>,
-) -> Result<String, grin_wallet_controller::Error> {
+) -> Result<String, mimble_wallet_controller::Error> {
 	let args = app.clone().get_matches_from(arg_vec);
 	let _ = get_wallet_subcommand(test_dir, wallet_name, args.clone());
 	let config = initial_setup_wallet(test_dir, wallet_name);
@@ -296,7 +296,7 @@ pub fn execute_command_no_setup<C, F>(
 	client: &C,
 	arg_vec: Vec<&str>,
 	f: F,
-) -> Result<String, grin_wallet_controller::Error>
+) -> Result<String, mimble_wallet_controller::Error>
 where
 	C: NodeClient + 'static + Clone,
 	F: FnOnce(

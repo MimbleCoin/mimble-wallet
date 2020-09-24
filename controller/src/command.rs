@@ -27,14 +27,14 @@ use crate::util::secp::key::SecretKey;
 use crate::util::{Mutex, ZeroingString};
 use crate::{controller, display};
 use chrono::Utc;
-use grin_wallet_impls::adapters::{create_swap_message_sender, validate_tor_address};
-use grin_wallet_impls::{Address, MWCMQSAddress, Publisher};
-use grin_wallet_libwallet::api_impl::owner_swap;
-use grin_wallet_libwallet::proof::proofaddress::ProvableAddress;
-use grin_wallet_libwallet::proof::tx_proof::TxProof;
-use grin_wallet_libwallet::swap::message;
-use grin_wallet_libwallet::swap::types::Action;
-use grin_wallet_libwallet::{Slate, TxLogEntry, WalletInst};
+use mimble_wallet_impls::adapters::{create_swap_message_sender, validate_tor_address};
+use mimble_wallet_impls::{Address, MWCMQSAddress, Publisher};
+use mimble_wallet_libwallet::api_impl::owner_swap;
+use mimble_wallet_libwallet::proof::proofaddress::ProvableAddress;
+use mimble_wallet_libwallet::proof::tx_proof::TxProof;
+use mimble_wallet_libwallet::swap::message;
+use mimble_wallet_libwallet::swap::types::Action;
+use mimble_wallet_libwallet::{Slate, TxLogEntry, WalletInst};
 use serde_json as json;
 use std::fs::File;
 use std::io;
@@ -104,7 +104,7 @@ where
 	)?;
 
 	let m = p.get_mnemonic(None, args.password, wallet_data_dir)?;
-	grin_wallet_impls::lifecycle::show_recovery_phrase(m);
+	mimble_wallet_impls::lifecycle::show_recovery_phrase(m);
 	Ok(())
 }
 
@@ -126,7 +126,7 @@ where
 	let mut w_lock = owner_api.wallet_inst.lock();
 	let p = w_lock.lc_provider()?;
 	let m = p.get_mnemonic(None, args.passphrase, wallet_data_dir)?;
-	grin_wallet_impls::lifecycle::show_recovery_phrase(m);
+	mimble_wallet_impls::lifecycle::show_recovery_phrase(m);
 	Ok(())
 }
 
@@ -1236,9 +1236,9 @@ where
 	let tx_pf: TxProof = serde_json::from_str(&proof)
 		.map_err(|e| ErrorKind::LibWallet(format!("Unable to deserialize proof data, {}", e)))?;
 
-	match grin_wallet_libwallet::proof::tx_proof::verify_tx_proof_wrapper(&tx_pf) {
+	match mimble_wallet_libwallet::proof::tx_proof::verify_tx_proof_wrapper(&tx_pf) {
 		Ok((sender, receiver, amount, outputs, kernel)) => {
-			grin_wallet_libwallet::proof::tx_proof::proof_ok(
+			mimble_wallet_libwallet::proof::tx_proof::proof_ok(
 				sender, receiver, amount, outputs, kernel,
 			);
 			Ok(())
@@ -1339,7 +1339,7 @@ where
 	controller::owner_single_use(None, keychain_mask, Some(owner_api), |api, _m| {
 		let result = api.swap_start(
 			keychain_mask,
-			&grin_wallet_libwallet::api_impl::types::SwapStartArgs {
+			&mimble_wallet_libwallet::api_impl::types::SwapStartArgs {
 				mwc_amount: args.mwc_amount,
 				secondary_currency: args.secondary_currency,
 				secondary_amount: args.secondary_amount,
@@ -1734,7 +1734,7 @@ where
 				// And there will be a single call only.
 				match method.as_str() {
 					"mwcmqs" => {
-						if grin_wallet_impls::adapters::get_mwcmqs_brocker().is_none() {
+						if mimble_wallet_impls::adapters::get_mwcmqs_brocker().is_none() {
 							let _ = controller::start_mwcmqs_listener(
 								wallet_inst2,
 								mqs_config.expect("No MQS config found!").clone(),
@@ -1751,7 +1751,7 @@ where
 							})?;
 							thread::sleep(Duration::from_millis(2000));
 						}
-						from_address = grin_wallet_impls::adapters::get_mwcmqs_brocker()
+						from_address = mimble_wallet_impls::adapters::get_mwcmqs_brocker()
 							.ok_or(crate::libwallet::ErrorKind::SwapError(
 								"Unable to start mwcmqs listener".to_string(),
 							))?
@@ -1902,7 +1902,7 @@ where
 			if args.start_listener {
 				match swap.communication_method.as_str() {
 					"mwcmqs" => {
-						if grin_wallet_impls::adapters::get_mwcmqs_brocker().is_some() {
+						if mimble_wallet_impls::adapters::get_mwcmqs_brocker().is_some() {
 							return Err(ErrorKind::GenericError("mwcmqs listener is already running, there is no need to specify '--start_listener' parameter".to_string()).into());
 						}
 
@@ -1966,10 +1966,10 @@ where
 						ErrorKind::ArgumentError(format!("Invalid destination address, {}", e))
 					})?;
 
-					if grin_wallet_impls::adapters::get_mwcmqs_brocker().is_none() {
+					if mimble_wallet_impls::adapters::get_mwcmqs_brocker().is_none() {
 						return Err(ErrorKind::GenericError("mqcmqs listener is not running. Please start it with 'listen' command or '--start_listener' argument".to_string()).into());
 					}
-					from_address = grin_wallet_impls::adapters::get_mwcmqs_brocker()
+					from_address = mimble_wallet_impls::adapters::get_mwcmqs_brocker()
 						.ok_or(ErrorKind::GenericError(
 							"Unable to start mwcmqs listener".to_string(),
 						))?

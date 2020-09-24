@@ -15,7 +15,7 @@
 use crate::api::TLSConfig;
 use crate::cli::command_loop;
 use crate::cmd::wallet_args::ParseError::ArgumentError;
-use crate::config::GRIN_WALLET_DIR;
+use crate::config::MIMBLE_WALLET_DIR;
 use crate::util::file::get_first_line;
 use crate::util::secp::key::SecretKey;
 use crate::util::{Mutex, ZeroingString};
@@ -23,21 +23,21 @@ use crate::util::{Mutex, ZeroingString};
 /// Argument parsing and error handling for wallet commands
 use clap::ArgMatches;
 use failure::Fail;
-use grin_wallet_api::Owner;
-use grin_wallet_config::{MQSConfig, TorConfig, WalletConfig};
-use grin_wallet_controller::command;
-use grin_wallet_controller::{Error, ErrorKind};
-use grin_wallet_impls::tor::config::is_tor_address;
-use grin_wallet_impls::{DefaultLCProvider, DefaultWalletImpl};
-use grin_wallet_impls::{PathToSlate, SlateGetter as _};
-use grin_wallet_libwallet::proof::proofaddress;
-use grin_wallet_libwallet::proof::proofaddress::ProvableAddress;
-use grin_wallet_libwallet::Slate;
-use grin_wallet_libwallet::{IssueInvoiceTxArgs, NodeClient, WalletInst, WalletLCProvider};
-use grin_wallet_util::grin_core as core;
-use grin_wallet_util::grin_core::core::amount_to_hr_string;
-use grin_wallet_util::grin_core::global;
-use grin_wallet_util::grin_keychain as keychain;
+use mimble_wallet_api::Owner;
+use mimble_wallet_config::{MQSConfig, TorConfig, WalletConfig};
+use mimble_wallet_controller::command;
+use mimble_wallet_controller::{Error, ErrorKind};
+use mimble_wallet_impls::tor::config::is_tor_address;
+use mimble_wallet_impls::{DefaultLCProvider, DefaultWalletImpl};
+use mimble_wallet_impls::{PathToSlate, SlateGetter as _};
+use mimble_wallet_libwallet::proof::proofaddress;
+use mimble_wallet_libwallet::proof::proofaddress::ProvableAddress;
+use mimble_wallet_libwallet::Slate;
+use mimble_wallet_libwallet::{IssueInvoiceTxArgs, NodeClient, WalletInst, WalletLCProvider};
+use mimble_wallet_util::mimble_core as core;
+use mimble_wallet_util::mimble_core::core::amount_to_hr_string;
+use mimble_wallet_util::mimble_core::global;
+use mimble_wallet_util::mimble_keychain as keychain;
 use linefeed::terminal::Signal;
 use linefeed::{Interface, ReadResult};
 use rpassword;
@@ -333,7 +333,7 @@ where
 		config
 			.wallet_data_dir
 			.clone()
-			.unwrap_or(GRIN_WALLET_DIR.to_string()),
+			.unwrap_or(MIMBLE_WALLET_DIR.to_string()),
 	);
 	if wallet_data_path.exists() && !test_mode {
 		return Err(ParseError::WalletExists(
@@ -1052,7 +1052,7 @@ pub fn parse_swap_args(args: &ArgMatches) -> Result<command::SwapArgs, ParseErro
 pub fn get_supported_secondary_currency_node_addrs(
 	wallet_config: &WalletConfig,
 ) -> HashMap<String, String> {
-	grin_wallet_libwallet::swap::defaults::get_swap_support_servers(
+	mimble_wallet_libwallet::swap::defaults::get_swap_support_servers(
 		&wallet_config.electrumx_mainnet_bch_node_addr,
 		&wallet_config.electrumx_testnet_bch_node_addr,
 		&wallet_config.electrumx_mainnet_btc_node_addr,
@@ -1109,9 +1109,9 @@ where
 
 	// legacy hack to avoid the need for changes in existing grin-wallet.toml files
 	// remove `wallet_data` from end of path as
-	// new lifecycle provider assumes grin_wallet.toml is in root of data directory
+	// new lifecycle provider assumes mimble_wallet.toml is in root of data directory
 	let mut top_level_wallet_dir = PathBuf::from(wallet_config.clone().data_file_dir);
-	if top_level_wallet_dir.ends_with(GRIN_WALLET_DIR) {
+	if top_level_wallet_dir.ends_with(MIMBLE_WALLET_DIR) {
 		top_level_wallet_dir.pop();
 		wallet_config.data_file_dir = top_level_wallet_dir.to_str().unwrap().into();
 	}
@@ -1188,7 +1188,7 @@ where
 			let secondary_currency_node_addrs =
 				get_supported_secondary_currency_node_addrs(&wallet_config);
 
-			grin_wallet_libwallet::swap::trades::init_swap_trade_backend(
+			mimble_wallet_libwallet::swap::trades::init_swap_trade_backend(
 				wallet_inst.get_data_file_dir(),
 				secondary_currency_node_addrs,
 			);

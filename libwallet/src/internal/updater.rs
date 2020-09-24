@@ -19,15 +19,15 @@ use std::collections::{HashMap, HashSet};
 use uuid::Uuid;
 
 use crate::error::{Error, ErrorKind};
-use crate::grin_core::consensus::reward;
-use crate::grin_core::core::{Output, TxKernel};
-use crate::grin_core::global;
-use crate::grin_core::libtx::proof::ProofBuilder;
-use crate::grin_core::libtx::reward;
-use crate::grin_keychain::{Identifier, Keychain, SwitchCommitmentType};
-use crate::grin_util as util;
-use crate::grin_util::secp::key::SecretKey;
-use crate::grin_util::secp::pedersen;
+use crate::mimble_core::consensus::reward;
+use crate::mimble_core::core::{Output, TxKernel};
+use crate::mimble_core::global;
+use crate::mimble_core::libtx::proof::ProofBuilder;
+use crate::mimble_core::libtx::reward;
+use crate::mimble_keychain::{Identifier, Keychain, SwitchCommitmentType};
+use crate::mimble_util as util;
+use crate::mimble_util::secp::key::SecretKey;
+use crate::mimble_util::secp::pedersen;
 use crate::internal::keys;
 use crate::types::{
 	NodeClient, OutputData, OutputStatus, TxLogEntry, TxLogEntryType, WalletBackend, WalletInfo,

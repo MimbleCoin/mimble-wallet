@@ -14,21 +14,21 @@
 //! Functions to restore a wallet's outputs from just the master seed
 
 use crate::api_impl::owner_updater::StatusMessage;
-use crate::grin_core::consensus::{valid_header_version, WEEK_HEIGHT};
-use crate::grin_core::core::HeaderVersion;
-use crate::grin_core::global;
-use crate::grin_core::libtx::proof;
-use crate::grin_keychain::{Identifier, Keychain, SwitchCommitmentType};
-use crate::grin_util::secp::key::SecretKey;
-use crate::grin_util::secp::pedersen;
-use crate::grin_util::static_secp_instance;
-use crate::grin_util::Mutex;
+use crate::mimble_core::consensus::{valid_header_version, WEEK_HEIGHT};
+use crate::mimble_core::core::HeaderVersion;
+use crate::mimble_core::global;
+use crate::mimble_core::libtx::proof;
+use crate::mimble_keychain::{Identifier, Keychain, SwitchCommitmentType};
+use crate::mimble_util::secp::key::SecretKey;
+use crate::mimble_util::secp::pedersen;
+use crate::mimble_util::static_secp_instance;
+use crate::mimble_util::Mutex;
 use crate::internal::keys;
 use crate::internal::tx;
 use crate::types::*;
 use crate::{wallet_lock, Error, ErrorKind};
-use grin_core::core::Transaction;
-use grin_wallet_util::grin_util as util;
+use mimble_core::core::Transaction;
+use mimble_wallet_util::mimble_util as util;
 use std::cmp;
 use std::collections::{HashMap, HashSet};
 use std::sync::mpsc::Sender;
@@ -565,7 +565,7 @@ where
 		let client = w.w2n_client().clone();
 		let keychain = w.keychain(keychain_mask)?.clone();
 
-		let mut blocks: Vec<grin_api::BlockPrintable> = Vec::new();
+		let mut blocks: Vec<mimble_api::BlockPrintable> = Vec::new();
 
 		let mut cur_height = start_height;
 		while cur_height <= end_height {
@@ -651,8 +651,8 @@ where
 						out.commit,
 						out.range_proof()?,
 						match out.output_type {
-							grin_api::OutputType::Coinbase => true,
-							grin_api::OutputType::Transaction => false,
+							mimble_api::OutputType::Coinbase => true,
+							mimble_api::OutputType::Transaction => false,
 						},
 						height,
 						out.mmr_index,

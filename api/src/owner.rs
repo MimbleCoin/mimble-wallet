@@ -37,8 +37,8 @@ use crate::libwallet::{
 use crate::util::logger::LoggingConfig;
 use crate::util::secp::key::SecretKey;
 use crate::util::{from_hex, static_secp_instance, Mutex, ZeroingString};
-use grin_wallet_util::grin_util::secp::key::PublicKey;
-use grin_wallet_util::OnionV3Address;
+use mimble_wallet_util::mimble_util::secp::key::PublicKey;
+use mimble_wallet_util::OnionV3Address;
 use std::convert::TryFrom;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::mpsc::{channel, Sender};
@@ -121,28 +121,28 @@ where
 	/// Create a new API instance with the given wallet instance. All subsequent
 	/// API calls will operate on this instance of the wallet.
 	///
-	/// Each method will call the [`WalletBackend`](../grin_wallet_libwallet/types/trait.WalletBackend.html)'s
-	/// [`open_with_credentials`](../grin_wallet_libwallet/types/trait.WalletBackend.html#tymethod.open_with_credentials)
+	/// Each method will call the [`WalletBackend`](../mimble_wallet_libwallet/types/trait.WalletBackend.html)'s
+	/// [`open_with_credentials`](../mimble_wallet_libwallet/types/trait.WalletBackend.html#tymethod.open_with_credentials)
 	/// (initialising a keychain with the master seed,) perform its operation, then close the keychain
-	/// with a call to [`close`](../grin_wallet_libwallet/types/trait.WalletBackend.html#tymethod.close)
+	/// with a call to [`close`](../mimble_wallet_libwallet/types/trait.WalletBackend.html#tymethod.close)
 	///
 	/// # Arguments
 	/// * `wallet_in` - A reference-counted mutex containing an implementation of the
 	/// * `custom_channel` - A custom MPSC Tx/Rx pair to capture status
 	/// updates
-	/// [`WalletBackend`](../grin_wallet_libwallet/types/trait.WalletBackend.html) trait.
+	/// [`WalletBackend`](../mimble_wallet_libwallet/types/trait.WalletBackend.html) trait.
 	///
 	/// # Returns
 	/// * An instance of the OwnerApi holding a reference to the provided wallet
 	///
 	/// # Example
 	/// ```
-	/// use grin_wallet_util::grin_keychain as keychain;
-	/// use grin_wallet_util::grin_util as util;
-	/// use grin_wallet_api as api;
-	/// use grin_wallet_config as config;
-	/// use grin_wallet_impls as impls;
-	/// use grin_wallet_libwallet as libwallet;
+	/// use mimble_wallet_util::mimble_keychain as keychain;
+	/// use mimble_wallet_util::mimble_util as util;
+	/// use mimble_wallet_api as api;
+	/// use mimble_wallet_config as config;
+	/// use mimble_wallet_impls as impls;
+	/// use mimble_wallet_libwallet as libwallet;
 	///
 	/// use keychain::ExtKeychain;
 	/// use tempfile::tempdir;
@@ -254,8 +254,8 @@ where
 	///
 	/// # Returns
 	/// * Result Containing:
-	/// * A Vector of [`AcctPathMapping`](../grin_wallet_libwallet/types/struct.AcctPathMapping.html) data
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * A Vector of [`AcctPathMapping`](../mimble_wallet_libwallet/types/struct.AcctPathMapping.html) data
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Remarks
 	///
@@ -266,7 +266,7 @@ where
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let api_owner = Owner::new(wallet.clone(), None, None);
 	///
@@ -299,8 +299,8 @@ where
 	///
 	/// # Returns
 	/// * Result Containing:
-	/// * A [Keychain Identifier](../grin_keychain/struct.Identifier.html) for the new path
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * A [Keychain Identifier](../mimble_keychain/struct.Identifier.html) for the new path
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Remarks
 	///
@@ -317,7 +317,7 @@ where
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let api_owner = Owner::new(wallet.clone(), None, None);
 	///
@@ -350,7 +350,7 @@ where
 	/// # Returns
 	/// * Result Containing:
 	/// * `Ok(())` if the path was correctly set
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Remarks
 	///
@@ -364,7 +364,7 @@ where
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let api_owner = Owner::new(wallet.clone(), None, None);
 	///
@@ -397,7 +397,7 @@ where
 	/// in the wallet will be returned. If `false`, spent outputs will omitted
 	/// from the results.
 	/// * `refresh_from_node` - If true, the wallet will attempt to contact
-	/// a node (via the [`NodeClient`](../grin_wallet_libwallet/types/trait.NodeClient.html)
+	/// a node (via the [`NodeClient`](../mimble_wallet_libwallet/types/trait.NodeClient.html)
 	/// provided during wallet instantiation). If `false`, the results will
 	/// contain output information that may be out-of-date (from the last time
 	/// the wallet's output set was refreshed against the node).
@@ -412,15 +412,15 @@ where
 	/// refreshed from the node (note this may be false even if the `refresh_from_node`
 	/// argument was set to `true`.
 	/// * The second element contains a vector of
-	/// [OutputCommitMapping](../grin_wallet_libwallet/types/struct.OutputCommitMapping.html)
+	/// [OutputCommitMapping](../mimble_wallet_libwallet/types/struct.OutputCommitMapping.html)
 	/// of which each element is a mapping between the wallet's internal
-	/// [OutputData](../grin_wallet_libwallet/types/struct.Output.html)
+	/// [OutputData](../mimble_wallet_libwallet/types/struct.Output.html)
 	/// and the Output commitment as identified in the chain's UTXO set
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let api_owner = Owner::new(wallet.clone(), None, None);
 	/// let show_spent = false;
@@ -459,14 +459,14 @@ where
 		)
 	}
 
-	/// Returns a list of [Transaction Log Entries](../grin_wallet_libwallet/types/struct.TxLogEntry.html)
+	/// Returns a list of [Transaction Log Entries](../mimble_wallet_libwallet/types/struct.TxLogEntry.html)
 	/// from the active account in the wallet.
 	///
 	/// # Arguments
 	/// * `keychain_mask` - Wallet secret mask to XOR against the stored wallet seed before using, if
 	/// being used.
 	/// * `refresh_from_node` - If true, the wallet will attempt to contact
-	/// a node (via the [`NodeClient`](../grin_wallet_libwallet/types/trait.NodeClient.html)
+	/// a node (via the [`NodeClient`](../mimble_wallet_libwallet/types/trait.NodeClient.html)
 	/// provided during wallet instantiation). If `false`, the results will
 	/// contain transaction information that may be out-of-date (from the last time
 	/// the wallet's output set was refreshed against the node).
@@ -475,7 +475,7 @@ where
 	/// * `tx_id` - If `Some(i)`, only return the transactions associated with
 	/// the transaction log entry of id `i`.
 	/// * `tx_slate_id` - If `Some(uuid)`, only return transactions associated with
-	/// the given [`Slate`](../grin_wallet_libwallet/slate/struct.Slate.html) uuid.
+	/// the given [`Slate`](../mimble_wallet_libwallet/slate/struct.Slate.html) uuid.
 	///
 	/// # Returns
 	/// * `(bool, Vec<TxLogEntry)` - A tuple:
@@ -483,12 +483,12 @@ where
 	/// refreshed from the node (note this may be false even if the `refresh_from_node`
 	/// argument was set to `true`.
 	/// * The second element contains the set of retrieved
-	/// [TxLogEntries](../grin_wallet_libwallet/types/struct.TxLogEntry.html)
+	/// [TxLogEntries](../mimble_wallet_libwallet/types/struct.TxLogEntry.html)
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let api_owner = Owner::new(wallet.clone(), None, None);
 	/// let update_from_node = true;
@@ -546,7 +546,7 @@ where
 	/// * `keychain_mask` - Wallet secret mask to XOR against the stored wallet seed before using, if
 	/// being used.
 	/// * `refresh_from_node` - If true, the wallet will attempt to contact
-	/// a node (via the [`NodeClient`](../grin_wallet_libwallet/types/trait.NodeClient.html)
+	/// a node (via the [`NodeClient`](../mimble_wallet_libwallet/types/trait.NodeClient.html)
 	/// provided during wallet instantiation). If `false`, the results will
 	/// contain transaction information that may be out-of-date (from the last time
 	/// the wallet's output set was refreshed against the node).
@@ -556,16 +556,16 @@ where
 	/// should have before it's included in the 'amount_currently_spendable' total
 	///
 	/// # Returns
-	/// * (`bool`, [`WalletInfo`](../grin_wallet_libwallet/types/struct.WalletInfo.html)) - A tuple:
+	/// * (`bool`, [`WalletInfo`](../mimble_wallet_libwallet/types/struct.WalletInfo.html)) - A tuple:
 	/// * The first `bool` element indicates whether the data was successfully
 	/// refreshed from the node (note this may be false even if the `refresh_from_node`
 	/// argument was set to `true`.
-	/// * The second element contains the Summary [`WalletInfo`](../grin_wallet_libwallet/types/struct.WalletInfo.html)
+	/// * The second element contains the Summary [`WalletInfo`](../mimble_wallet_libwallet/types/struct.WalletInfo.html)
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let mut api_owner = Owner::new(wallet.clone(), None, None);
 	/// let update_from_node = true;
@@ -603,7 +603,7 @@ where
 	}
 
 	/// Initiates a new transaction as the sender, creating a new
-	/// [`Slate`](../grin_wallet_libwallet/slate/struct.Slate.html) object containing
+	/// [`Slate`](../mimble_wallet_libwallet/slate/struct.Slate.html) object containing
 	/// the sender's inputs, change outputs, and public signature data. This slate can
 	/// then be sent to the recipient to continue the transaction via the
 	/// [Foreign API's `receive_tx`](struct.Foreign.html#method.receive_tx) method.
@@ -619,8 +619,8 @@ where
 	/// as via file transfer,) the lock call should happen immediately (before the file is sent
 	/// to the recipient).
 	///
-	/// If the `send_args` [`InitTxSendArgs`](../grin_wallet_libwallet/types/struct.InitTxSendArgs.html),
-	/// of the [`args`](../grin_wallet_libwallet/types/struct.InitTxArgs.html), field is Some, this
+	/// If the `send_args` [`InitTxSendArgs`](../mimble_wallet_libwallet/types/struct.InitTxSendArgs.html),
+	/// of the [`args`](../mimble_wallet_libwallet/types/struct.InitTxArgs.html), field is Some, this
 	/// function will attempt to perform a synchronous send to the recipient specified in the `dest`
 	/// field according to the `method` field, and will also finalize and post the transaction if
 	/// the `finalize` field is set.
@@ -628,18 +628,18 @@ where
 	/// # Arguments
 	/// * `keychain_mask` - Wallet secret mask to XOR against the stored wallet seed before using, if
 	/// being used.
-	/// * `args` - [`InitTxArgs`](../grin_wallet_libwallet/types/struct.InitTxArgs.html),
+	/// * `args` - [`InitTxArgs`](../mimble_wallet_libwallet/types/struct.InitTxArgs.html),
 	/// transaction initialization arguments. See struct documentation for further detail.
 	///
 	/// # Returns
 	/// * a result containing:
-	/// * The transaction [Slate](../grin_wallet_libwallet/slate/struct.Slate.html),
+	/// * The transaction [Slate](../mimble_wallet_libwallet/slate/struct.Slate.html),
 	/// which can be forwarded to the recieving party by any means. Once the caller is relatively
 	/// certain that the transaction has been sent to the recipient, the associated wallet
 	/// transaction outputs should be locked via a call to
 	/// [`tx_lock_outputs`](struct.Owner.html#method.tx_lock_outputs). This must be called before calling
 	/// [`finalize_tx`](struct.Owner.html#method.finalize_tx).
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Remarks
 	///
@@ -651,7 +651,7 @@ where
 	/// # Example
 	/// Set up as in [new](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let mut api_owner = Owner::new(wallet.clone(), None, None);
 	/// // Attempt to create a transaction using the 'default' account
@@ -804,18 +804,18 @@ where
 	/// # Arguments
 	/// * `keychain_mask` - Wallet secret mask to XOR against the stored wallet seed before using, if
 	/// being used.
-	/// * `args` - [`IssueInvoiceTxArgs`](../grin_wallet_libwallet/types/struct.IssueInvoiceTxArgs.html),
+	/// * `args` - [`IssueInvoiceTxArgs`](../mimble_wallet_libwallet/types/struct.IssueInvoiceTxArgs.html),
 	/// invoice transaction initialization arguments. See struct documentation for further detail.
 	///
 	/// # Returns
-	/// * ``Ok([`slate`](../grin_wallet_libwallet/slate/struct.Slate.html))` if successful,
+	/// * ``Ok([`slate`](../mimble_wallet_libwallet/slate/struct.Slate.html))` if successful,
 	/// containing the updated slate.
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let mut api_owner = Owner::new(wallet.clone(), None, None);
 	///
@@ -857,20 +857,20 @@ where
 	/// # Arguments
 	/// * `keychain_mask` - Wallet secret mask to XOR against the stored wallet seed before using, if
 	/// being used.
-	/// * `slate` - The transaction [`Slate`](../grin_wallet_libwallet/slate/struct.Slate.html). The
+	/// * `slate` - The transaction [`Slate`](../mimble_wallet_libwallet/slate/struct.Slate.html). The
 	/// payer should have filled in round 1 and 2.
-	/// * `args` - [`InitTxArgs`](../grin_wallet_libwallet/types/struct.InitTxArgs.html),
+	/// * `args` - [`InitTxArgs`](../mimble_wallet_libwallet/types/struct.InitTxArgs.html),
 	/// transaction initialization arguments. See struct documentation for further detail.
 	///
 	/// # Returns
-	/// * ``Ok([`slate`](../grin_wallet_libwallet/slate/struct.Slate.html))` if successful,
+	/// * ``Ok([`slate`](../mimble_wallet_libwallet/slate/struct.Slate.html))` if successful,
 	/// containing the updated slate.
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let mut api_owner = Owner::new(wallet.clone(), None, None);
 	///
@@ -924,7 +924,7 @@ where
 	}
 
 	/// Locks the outputs associated with the inputs to the transaction in the given
-	/// [`Slate`](../grin_wallet_libwallet/slate/struct.Slate.html),
+	/// [`Slate`](../mimble_wallet_libwallet/slate/struct.Slate.html),
 	/// making them unavailable for use in further transactions. This function is called
 	/// by the sender, (or more generally, all parties who have put inputs into the transaction,)
 	/// and must be called before the corresponding call to [`finalize_tx`](struct.Owner.html#method.finalize_tx)
@@ -939,7 +939,7 @@ where
 	/// # Arguments
 	/// * `keychain_mask` - Wallet secret mask to XOR against the stored wallet seed before using, if
 	/// being used.
-	/// * `slate` - The transaction [`Slate`](../grin_wallet_libwallet/slate/struct.Slate.html). All
+	/// * `slate` - The transaction [`Slate`](../mimble_wallet_libwallet/slate/struct.Slate.html). All
 	/// * `participant_id` - The participant id, generally 0 for the party putting in funds, 1 for the
 	/// party receiving.
 	/// elements in the `input` vector of the `tx` field that are found in the wallet's currently
@@ -947,12 +947,12 @@ where
 	///
 	/// # Returns
 	/// * Ok(()) if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let mut api_owner = Owner::new(wallet.clone(), None, None);
 	/// let args = InitTxArgs {
@@ -1009,19 +1009,19 @@ where
 	/// # Arguments
 	/// * `keychain_mask` - Wallet secret mask to XOR against the stored wallet seed before using, if
 	/// being used.
-	/// * `slate` - The transaction [`Slate`](../grin_wallet_libwallet/slate/struct.Slate.html). All
+	/// * `slate` - The transaction [`Slate`](../mimble_wallet_libwallet/slate/struct.Slate.html). All
 	/// participants must have filled in both rounds, and the sender should have locked their
 	/// outputs (via the [`tx_lock_outputs`](struct.Owner.html#method.tx_lock_outputs) function).
 	///
 	/// # Returns
-	/// * ``Ok([`slate`](../grin_wallet_libwallet/slate/struct.Slate.html))` if successful,
+	/// * ``Ok([`slate`](../mimble_wallet_libwallet/slate/struct.Slate.html))` if successful,
 	/// containing the new finalized slate.
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let mut api_owner = Owner::new(wallet.clone(), None, None);
 	/// let args = InitTxArgs {
@@ -1071,8 +1071,8 @@ where
 	/// # Arguments
 	/// * `keychain_mask` - Wallet secret mask to XOR against the stored wallet seed before using, if
 	/// being used.
-	/// * `tx` - A completed [`Transaction`](../grin_core/core/transaction/struct.Transaction.html),
-	/// typically the `tx` field in the transaction [`Slate`](../grin_wallet_libwallet/slate/struct.Slate.html).
+	/// * `tx` - A completed [`Transaction`](../mimble_core/core/transaction/struct.Transaction.html),
+	/// typically the `tx` field in the transaction [`Slate`](../mimble_wallet_libwallet/slate/struct.Slate.html).
 	/// * `fluff` - Instruct the node whether to use the Dandelion protocol when posting the
 	/// transaction. If `true`, the node should skip the Dandelion phase and broadcast the
 	/// transaction to all peers immediately. If `false`, the node will follow dandelion logic and
@@ -1080,12 +1080,12 @@ where
 	///
 	/// # Returns
 	/// * `Ok(())` if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let mut api_owner = Owner::new(wallet.clone(), None, None);
 	/// let args = InitTxArgs {
@@ -1147,19 +1147,19 @@ where
 	///
 	/// * `keychain_mask` - Wallet secret mask to XOR against the stored wallet seed before using, if
 	/// being used.
-	/// * `tx_id` - If present, cancel by the [`TxLogEntry`](../grin_wallet_libwallet/types/struct.TxLogEntry.html) id
+	/// * `tx_id` - If present, cancel by the [`TxLogEntry`](../mimble_wallet_libwallet/types/struct.TxLogEntry.html) id
 	/// for the transaction.
 	///
 	/// * `tx_slate_id` - If present, cancel by the Slate id.
 	///
 	/// # Returns
 	/// * `Ok(())` if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let mut api_owner = Owner::new(wallet.clone(), None, None);
 	/// let args = InitTxArgs {
@@ -1217,17 +1217,17 @@ where
 	///
 	/// * `keychain_mask` - Wallet secret mask to XOR against the stored wallet seed before using, if
 	/// being used.
-	/// * `tx_log_entry` - A [`TxLogEntry`](../grin_wallet_libwallet/types/struct.TxLogEntry.html)
+	/// * `tx_log_entry` - A [`TxLogEntry`](../mimble_wallet_libwallet/types/struct.TxLogEntry.html)
 	///
 	/// # Returns
-	/// * Ok with the stored  [`Transaction`](../grin_core/core/transaction/struct.Transaction.html)
+	/// * Ok with the stored  [`Transaction`](../mimble_core/core/transaction/struct.Transaction.html)
 	/// if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let api_owner = Owner::new(wallet.clone(), None, None);
 	/// let update_from_node = true;
@@ -1275,16 +1275,16 @@ where
 	///
 	/// * `keychain_mask` - Wallet secret mask to XOR against the stored wallet seed before using, if
 	/// being used.
-	/// * `slate` - The transaction [`Slate`](../grin_wallet_libwallet/slate/struct.Slate.html).
+	/// * `slate` - The transaction [`Slate`](../mimble_wallet_libwallet/slate/struct.Slate.html).
 	///
 	/// # Returns
 	/// * `Ok(())` if successful and the signatures validate
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let mut api_owner = Owner::new(wallet.clone(), None, None);
 	/// let args = InitTxArgs {
@@ -1341,7 +1341,7 @@ where
 	/// running.
 	///
 	/// When an output is found that doesn't exist in the wallet, a corresponding
-	/// [TxLogEntry](../grin_wallet_libwallet/types/struct.TxLogEntry.html) is created.
+	/// [TxLogEntry](../mimble_wallet_libwallet/types/struct.TxLogEntry.html) is created.
 	///
 	/// # Arguments
 	///
@@ -1361,12 +1361,12 @@ where
 	///
 	/// # Returns
 	/// * `Ok(())` if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let mut api_owner = Owner::new(wallet.clone(), None, None);
 	/// let result = api_owner.scan(
@@ -1427,15 +1427,15 @@ where
 	/// being used.
 	///
 	/// # Returns
-	/// * Ok with a  [`NodeHeightResult`](../grin_wallet_libwallet/types/struct.NodeHeightResult.html)
+	/// * Ok with a  [`NodeHeightResult`](../mimble_wallet_libwallet/types/struct.NodeHeightResult.html)
 	/// if successful. If the height result was obtained from the configured node,
 	/// `updated_from_node` will be set to `true`
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let api_owner = Owner::new(wallet.clone(), None, None);
 	/// let result = api_owner.node_height(None);
@@ -1471,14 +1471,14 @@ where
 	// LIFECYCLE FUNCTIONS
 
 	/// Retrieve the top-level directory for the wallet. This directory should contain the
-	/// `mwc-wallet.toml` file and the `wallet_data` directory that contains the wallet
+	/// `mimble-wallet.toml` file and the `wallet_data` directory that contains the wallet
 	/// seed + data files. Future versions of the wallet API will support multiple wallets
 	/// within the top level directory.
 	///
 	/// The top level directory defaults to (in order of precedence):
 	///
 	/// 1) The current directory, from which `mwc-wallet` or the main process was run, if it
-	/// contains a `mwc-wallet.toml` file.
+	/// contains a `mimble-wallet.toml` file.
 	/// 2) ~/.grin/<chaintype>/ otherwise
 	///
 	/// # Arguments
@@ -1487,12 +1487,12 @@ where
 	///
 	/// # Returns
 	/// * Ok with a String value representing the full path to the top level wallet dierctory
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let api_owner = Owner::new(wallet.clone(), None, None);
 	/// let result = api_owner.get_top_level_directory();
@@ -1526,12 +1526,12 @@ where
 	///
 	/// # Returns
 	/// * Ok if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let dir = "path/to/wallet/dir";
 	///
@@ -1556,9 +1556,9 @@ where
 		lc.set_top_level_directory(dir)
 	}
 
-	/// Create a `mwc-wallet.toml` configuration file in the top-level directory for the
+	/// Create a `mimble-wallet.toml` configuration file in the top-level directory for the
 	/// specified chain type.
-	/// A custom [`WalletConfig`](../grin_wallet_config/types/struct.WalletConfig.html)
+	/// A custom [`WalletConfig`](../mimble_wallet_config/types/struct.WalletConfig.html)
 	/// and/or grin `LoggingConfig` may optionally be provided, otherwise defaults will be used.
 	///
 	/// Paths in the configuration file will be updated to reflect the top level directory, so
@@ -1574,14 +1574,14 @@ where
 	///
 	/// # Returns
 	/// * Ok if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
-	/// use grin_core::global::ChainTypes;
+	/// use mimble_core::global::ChainTypes;
 	///
 	/// let dir = "path/to/wallet/dir";
 	///
@@ -1614,7 +1614,7 @@ where
 		let lc = w_lock.lc_provider()?;
 		lc.create_config(
 			chain_type,
-			"mwc-wallet.toml",
+			"mimble-wallet.toml",
 			wallet_config,
 			logging_config,
 			tor_config,
@@ -1628,7 +1628,7 @@ where
 	/// Paths in the configuration file will be updated to reflect the top level directory, so
 	/// path-related values in the optional configuration structs will be ignored.
 	///
-	/// The wallet files must not already exist, and ~The `mwc-wallet.toml` file must exist
+	/// The wallet files must not already exist, and ~The `mimble-wallet.toml` file must exist
 	/// in the top level directory (can be created via a call to
 	/// [`create_config`](struct.Owner.html#method.create_config))
 	///
@@ -1643,14 +1643,14 @@ where
 	///
 	/// # Returns
 	/// * Ok if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
-	/// use grin_core::global::ChainTypes;
+	/// use mimble_core::global::ChainTypes;
 	///
 	/// // note that the WalletInst struct does not necessarily need to contain an
 	/// // instantiated wallet
@@ -1713,14 +1713,14 @@ where
 	///
 	/// # Returns
 	/// * Ok if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
-	/// use grin_core::global::ChainTypes;
+	/// use mimble_core::global::ChainTypes;
 	///
 	/// // note that the WalletInst struct does not necessarily need to contain an
 	/// // instantiated wallet
@@ -1780,14 +1780,14 @@ where
 	///
 	/// # Returns
 	/// * Ok if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
-	/// use grin_core::global::ChainTypes;
+	/// use mimble_core::global::ChainTypes;
 	///
 	/// // Set up as above
 	/// # let api_owner = Owner::new(wallet.clone(), None, None);
@@ -1816,14 +1816,14 @@ where
 	///
 	/// # Returns
 	/// * Ok(BIP-39 mneminc) if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
-	/// use grin_core::global::ChainTypes;
+	/// use mimble_core::global::ChainTypes;
 	///
 	/// // Set up as above
 	/// # let api_owner = Owner::new(wallet.clone(), None, None);
@@ -1862,14 +1862,14 @@ where
 	///
 	/// # Returns
 	/// * Ok(()) if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
-	/// use grin_core::global::ChainTypes;
+	/// use mimble_core::global::ChainTypes;
 	///
 	/// // Set up as above
 	/// # let api_owner = Owner::new(wallet.clone(), None, None);
@@ -1906,14 +1906,14 @@ where
 	///
 	/// # Returns
 	/// * Ok if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
-	/// use grin_core::global::ChainTypes;
+	/// use mimble_core::global::ChainTypes;
 	///
 	/// // Set up as above
 	/// # let api_owner = Owner::new(wallet.clone(), None, None);
@@ -1960,14 +1960,14 @@ where
 	///
 	/// # Returns
 	/// * Ok if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
-	/// use grin_core::global::ChainTypes;
+	/// use mimble_core::global::ChainTypes;
 	///
 	/// use std::time::Duration;
 	///
@@ -2015,14 +2015,14 @@ where
 	///
 	/// # Returns
 	/// * Ok if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
-	/// use grin_core::global::ChainTypes;
+	/// use mimble_core::global::ChainTypes;
 	///
 	/// use std::time::Duration;
 	///
@@ -2056,15 +2056,15 @@ where
 	/// * `count` - The number of messages to retrieve.
 	///
 	/// # Returns
-	/// * Ok with a Vec of [`StatusMessage`](../grin_wallet_libwallet/api_impl/owner_updater/enum.StatusMessage.html)
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * Ok with a Vec of [`StatusMessage`](../mimble_wallet_libwallet/api_impl/owner_updater/enum.StatusMessage.html)
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
-	/// use grin_core::global::ChainTypes;
+	/// use mimble_core::global::ChainTypes;
 	///
 	/// use std::time::Duration;
 	///
@@ -2121,14 +2121,14 @@ where
 	///
 	/// # Returns
 	/// * Ok with a DalekPublicKey representing the address
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
-	/// use grin_core::global::ChainTypes;
+	/// use mimble_core::global::ChainTypes;
 	///
 	/// use std::time::Duration;
 	///
@@ -2160,15 +2160,15 @@ where
 	///
 	/// # Returns
 	/// * Ok(DalekPublicKey) representing the public key associated with the address, if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered
 	/// or the address provided is invalid
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
-	/// use grin_core::global::ChainTypes;
+	/// use mimble_core::global::ChainTypes;
 	///
 	/// use std::time::Duration;
 	///
@@ -2191,7 +2191,7 @@ where
 		Ok(addr.to_ed25519()?)
 	}
 
-	/// Returns a single, exportable [PaymentProof](../grin_wallet_libwallet/api_impl/types/struct.PaymentProof.html)
+	/// Returns a single, exportable [PaymentProof](../mimble_wallet_libwallet/api_impl/types/struct.PaymentProof.html)
 	/// from a completed transaction within the wallet.
 	///
 	/// The transaction must have been created with a payment proof, and the transaction must be
@@ -2202,7 +2202,7 @@ where
 	/// * `keychain_mask` - Wallet secret mask to XOR against the stored wallet seed before using, if
 	/// being used.
 	/// * `refresh_from_node` - If true, the wallet will attempt to contact
-	/// a node (via the [`NodeClient`](../grin_wallet_libwallet/types/trait.NodeClient.html)
+	/// a node (via the [`NodeClient`](../mimble_wallet_libwallet/types/trait.NodeClient.html)
 	/// provided during wallet instantiation). If `false`, the results will
 	/// contain transaction information that may be out-of-date (from the last time
 	/// the wallet's output set was refreshed against the node).
@@ -2213,14 +2213,14 @@ where
 	/// given `uuid`
 	///
 	/// # Returns
-	/// * Ok([PaymentProof](../grin_wallet_libwallet/api_impl/types/struct.PaymentProof.html)) if successful
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered
+	/// * Ok([PaymentProof](../mimble_wallet_libwallet/api_impl/types/struct.PaymentProof.html)) if successful
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered
 	/// or the proof is not present or complete
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let api_owner = Owner::new(wallet.clone(), None, None);
 	/// let update_from_node = true;
@@ -2268,7 +2268,7 @@ where
 		owner::get_stored_tx_proof(self.wallet_inst.clone(), tx_id)
 	}
 
-	/// Verifies a [PaymentProof](../grin_wallet_libwallet/api_impl/types/struct.PaymentProof.html)
+	/// Verifies a [PaymentProof](../mimble_wallet_libwallet/api_impl/types/struct.PaymentProof.html)
 	/// This process entails:
 	///
 	/// * Ensuring the kernel identified by the proof's stored excess commitment exists in the kernel set
@@ -2285,19 +2285,19 @@ where
 	/// # Arguments
 	/// * `keychain_mask` - Wallet secret mask to XOR against the stored wallet seed before using, if
 	/// being used.
-	/// * `proof` A [PaymentProof](../grin_wallet_libwallet/api_impl/types/struct.PaymentProof.html))
+	/// * `proof` A [PaymentProof](../mimble_wallet_libwallet/api_impl/types/struct.PaymentProof.html))
 	///
 	/// # Returns
 	/// * Ok((bool, bool)) if the proof is valid. The first boolean indicates whether the sender
 	/// address belongs to this wallet, the second whether the recipient address belongs to this
 	/// wallet
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered
 	/// or the proof is not present or complete
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env!(wallet, wallet_config);
 	///
 	/// let api_owner = Owner::new(wallet.clone(), None, None);
 	/// let update_from_node = true;
@@ -2476,13 +2476,13 @@ where
 #[macro_export]
 macro_rules! doctest_helper_setup_doc_env {
 	($wallet:ident, $wallet_config:ident) => {
-		use grin_wallet_api as api;
-		use grin_wallet_config as config;
-		use grin_wallet_impls as impls;
-		use grin_wallet_libwallet as libwallet;
-		use grin_wallet_util::grin_core;
-		use grin_wallet_util::grin_keychain as keychain;
-		use grin_wallet_util::grin_util as util;
+		use mimble_wallet_api as api;
+		use mimble_wallet_config as config;
+		use mimble_wallet_impls as impls;
+		use mimble_wallet_libwallet as libwallet;
+		use mimble_wallet_util::mimble_core;
+		use mimble_wallet_util::mimble_keychain as keychain;
+		use mimble_wallet_util::mimble_util as util;
 
 		use keychain::ExtKeychain;
 		use tempfile::tempdir;

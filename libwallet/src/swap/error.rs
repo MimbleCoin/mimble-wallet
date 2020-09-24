@@ -14,8 +14,8 @@
 
 use super::multisig;
 use failure::Fail;
-use grin_core::core::committed;
-use grin_util::secp;
+use mimble_core::core::committed;
+use mimble_util::secp;
 use std::io;
 
 /// Swap crate errors
@@ -79,7 +79,7 @@ pub enum ErrorKind {
 	Multisig(multisig::ErrorKind),
 	/// Keychain failed
 	#[fail(display = "Swap Keychain error: {}", _0)]
-	Keychain(grin_keychain::Error),
+	Keychain(mimble_keychain::Error),
 	/// LibWallet error
 	#[fail(display = "Swap LibWaller error: {}", _0)]
 	LibWallet(crate::ErrorKind),
@@ -133,8 +133,8 @@ impl ErrorKind {
 	}
 }
 
-impl From<grin_keychain::Error> for ErrorKind {
-	fn from(error: grin_keychain::Error) -> ErrorKind {
+impl From<mimble_keychain::Error> for ErrorKind {
+	fn from(error: mimble_keychain::Error) -> ErrorKind {
 		ErrorKind::Keychain(error)
 	}
 }

@@ -25,8 +25,8 @@ use crate::util;
 use chrono::prelude::*;
 use chrono::Local;
 use colored::*;
-use grin_wallet_libwallet::swap::swap::SwapJournalRecord;
-use grin_wallet_libwallet::swap::types::SwapTransactionsConfirmations;
+use mimble_wallet_libwallet::swap::swap::SwapJournalRecord;
+use mimble_wallet_libwallet::swap::types::SwapTransactionsConfirmations;
 use prettytable;
 
 /// Display outputs in a pretty way

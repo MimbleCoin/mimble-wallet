@@ -15,12 +15,12 @@
 use super::error::ErrorKind;
 use crate::blake2::blake2b::blake2b;
 use crate::swap::ser::*;
-use grin_core::core::{Input as TxInput, Output as TxOutput, OutputFeatures};
-use grin_core::libtx::secp_ser;
-use grin_util::secp::constants::SECRET_KEY_SIZE;
-use grin_util::secp::key::{PublicKey, SecretKey};
-use grin_util::secp::pedersen::{Commitment, RangeProof};
-use grin_util::secp::Secp256k1;
+use mimble_core::core::{Input as TxInput, Output as TxOutput, OutputFeatures};
+use mimble_core::libtx::secp_ser;
+use mimble_util::secp::constants::SECRET_KEY_SIZE;
+use mimble_util::secp::key::{PublicKey, SecretKey};
+use mimble_util::secp::pedersen::{Commitment, RangeProof};
+use mimble_util::secp::Secp256k1;
 use hex::FromHex;
 use rand::thread_rng;
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
@@ -542,7 +542,7 @@ impl Hashed for Vec<u8> {
 #[cfg(test)]
 mod tests {
 	use super::*;
-	use grin_util::secp::ContextFlag;
+	use mimble_util::secp::ContextFlag;
 	use rand::thread_rng;
 
 	/*

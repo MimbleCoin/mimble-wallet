@@ -22,13 +22,13 @@
 #![deny(unused_mut)]
 #![warn(missing_docs)]
 
-use grin_wallet_config as config;
-use grin_wallet_util::grin_core;
-use grin_wallet_util::grin_keychain;
-use grin_wallet_util::grin_store;
-use grin_wallet_util::grin_util;
+use mimble_wallet_config as config;
+use mimble_wallet_util::mimble_core;
+use mimble_wallet_util::mimble_keychain;
+use mimble_wallet_util::mimble_store;
+use mimble_wallet_util::mimble_util;
 
-use grin_wallet_util as util;
+use mimble_wallet_util as util;
 
 use blake2_rfc as blake2;
 
@@ -46,7 +46,7 @@ extern crate strum;
 #[macro_use]
 extern crate strum_macros;
 
-extern crate grin_api;
+extern crate mimble_api;
 extern crate hex;
 extern crate signature;
 
@@ -70,7 +70,7 @@ pub use crate::error::{Error, ErrorKind};
 pub use crate::slate::{ParticipantData, ParticipantMessageData, ParticipantMessages, Slate};
 pub use crate::slate_versions::{
 	SlateVersion, VersionedCoinbase, VersionedSlate, CURRENT_SLATE_VERSION,
-	GRIN_BLOCK_HEADER_VERSION,
+	MIMBLE_BLOCK_HEADER_VERSION,
 };
 pub use api_impl::foreign;
 pub use api_impl::owner;

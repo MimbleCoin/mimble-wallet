@@ -17,14 +17,14 @@
 //! * Addition of payment_proof (PaymentInfo struct)
 //! * Addition of a u64 ttl_cutoff_height field
 
-use crate::grin_core::core::transaction::OutputFeatures;
-use crate::grin_core::libtx::secp_ser;
-use crate::grin_core::map_vec;
-use crate::grin_keychain::{BlindingFactor, Identifier};
-use crate::grin_util::secp;
-use crate::grin_util::secp::key::PublicKey;
-use crate::grin_util::secp::pedersen::{Commitment, RangeProof};
-use crate::grin_util::secp::Signature;
+use crate::mimble_core::core::transaction::OutputFeatures;
+use crate::mimble_core::libtx::secp_ser;
+use crate::mimble_core::map_vec;
+use crate::mimble_keychain::{BlindingFactor, Identifier};
+use crate::mimble_util::secp;
+use crate::mimble_util::secp::key::PublicKey;
+use crate::mimble_util::secp::pedersen::{Commitment, RangeProof};
+use crate::mimble_util::secp::Signature;
 use crate::proof::proofaddress;
 use crate::proof::proofaddress::ProvableAddress;
 use crate::slate::CompatKernelFeatures;

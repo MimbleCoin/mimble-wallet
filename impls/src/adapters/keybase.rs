@@ -22,9 +22,9 @@ use crate::error::{Error, ErrorKind};
 use crate::libwallet::swap::message::Message;
 use crate::libwallet::Slate;
 use crate::util::Mutex;
-use grin_core::core::amount_to_hr_string;
-use grin_util::RwLock;
-use grin_wallet_libwallet::proof::proofaddress::ProvableAddress;
+use mimble_core::core::amount_to_hr_string;
+use mimble_util::RwLock;
+use mimble_wallet_libwallet::proof::proofaddress::ProvableAddress;
 use serde::Serialize;
 use serde_json::{json, Value};
 use std::collections::HashSet;
@@ -36,9 +36,9 @@ use std::sync::mpsc::{Receiver, Sender};
 use std::sync::Arc;
 use std::time::Duration;
 
-pub const TOPIC_SLATE_NEW: &str = "grin_slate_new";
-pub const TOPIC_WALLET_SLATES: &str = "wallet713_grin_slate";
-const TOPIC_SLATE_SIGNED: &str = "grin_slate_signed";
+pub const TOPIC_SLATE_NEW: &str = "mimble_slate_new";
+pub const TOPIC_WALLET_SLATES: &str = "wallet713_mimble_slate";
+const TOPIC_SLATE_SIGNED: &str = "mimble_slate_signed";
 const SLEEP_DURATION: Duration = Duration::from_millis(5000);
 
 // Keybase is following MQS design and enforcing a single instance. And different compoments migth manage

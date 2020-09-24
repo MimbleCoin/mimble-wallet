@@ -14,11 +14,11 @@
 
 //! Error types for libwallet
 
-use crate::grin_core::core::{committed, transaction};
-use crate::grin_core::libtx;
-use crate::grin_keychain;
-use crate::grin_store;
-use crate::grin_util::secp;
+use crate::mimble_core::core::{committed, transaction};
+use crate::mimble_core::libtx;
+use crate::mimble_keychain;
+use crate::mimble_store;
+use crate::mimble_util::secp;
 use crate::swap::error::ErrorKind as SwapErrorKind;
 use crate::util;
 use failure::{Backtrace, Context, Fail};
@@ -64,11 +64,11 @@ pub enum ErrorKind {
 
 	/// LibTX Error
 	#[fail(display = "LibTx Error, {}", _0)]
-	LibTX(grin_core::libtx::ErrorKind),
+	LibTX(mimble_core::libtx::ErrorKind),
 
 	/// Keychain error
 	#[fail(display = "Keychain error, {}", _0)]
-	Keychain(grin_keychain::Error),
+	Keychain(mimble_keychain::Error),
 
 	/// Transaction Error
 	#[fail(display = "Transaction error, {}", _0)]
@@ -104,7 +104,7 @@ pub enum ErrorKind {
 
 	/// Other serialization errors
 	#[fail(display = "Ser/Deserialization error, {}", _0)]
-	Deser(crate::grin_core::ser::Error),
+	Deser(crate::mimble_core::ser::Error),
 
 	/// IO Error
 	#[fail(display = "I/O error, {}", _0)]
@@ -387,8 +387,8 @@ impl From<io::Error> for Error {
 	}
 }
 
-impl From<grin_keychain::Error> for Error {
-	fn from(error: grin_keychain::Error) -> Error {
+impl From<mimble_keychain::Error> for Error {
+	fn from(error: mimble_keychain::Error) -> Error {
 		Error {
 			inner: Context::new(ErrorKind::Keychain(error)),
 		}
@@ -396,7 +396,7 @@ impl From<grin_keychain::Error> for Error {
 }
 
 impl From<libtx::Error> for Error {
-	fn from(error: crate::grin_core::libtx::Error) -> Error {
+	fn from(error: crate::mimble_core::libtx::Error) -> Error {
 		Error {
 			inner: Context::new(ErrorKind::LibTX(error.kind())),
 		}
@@ -411,8 +411,8 @@ impl From<transaction::Error> for Error {
 	}
 }
 
-impl From<crate::grin_core::ser::Error> for Error {
-	fn from(error: crate::grin_core::ser::Error) -> Error {
+impl From<crate::mimble_core::ser::Error> for Error {
+	fn from(error: crate::mimble_core::ser::Error) -> Error {
 		Error {
 			inner: Context::new(ErrorKind::Deser(error)),
 		}
@@ -435,8 +435,8 @@ impl From<committed::Error> for Error {
 	}
 }
 
-impl From<grin_store::Error> for Error {
-	fn from(error: grin_store::Error) -> Error {
+impl From<mimble_store::Error> for Error {
+	fn from(error: mimble_store::Error) -> Error {
 		Error::from(ErrorKind::Backend(format!("{}", error)))
 	}
 }

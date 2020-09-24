@@ -14,12 +14,12 @@
 //! Test a wallet sending to self
 #[macro_use]
 extern crate log;
-extern crate grin_wallet_controller as wallet;
-extern crate grin_wallet_impls as impls;
+extern crate mimble_wallet_controller as wallet;
+extern crate mimble_wallet_impls as impls;
 
-use grin_wallet_util::grin_core as core;
+use mimble_wallet_util::mimble_core as core;
 
-use grin_wallet_libwallet as libwallet;
+use mimble_wallet_libwallet as libwallet;
 use impls::test_framework::{self, LocalWalletClient};
 use libwallet::InitTxArgs;
 use std::thread;

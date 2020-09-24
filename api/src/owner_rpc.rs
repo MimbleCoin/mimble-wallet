@@ -30,7 +30,7 @@ use crate::util::secp::pedersen;
 use crate::util::Mutex;
 use crate::{Owner, OwnerRpcS};
 use easy_jsonrpc_mw;
-use grin_wallet_libwallet::proof::proofaddress::ProvableAddress;
+use mimble_wallet_libwallet::proof::proofaddress::ProvableAddress;
 use std::sync::Arc;
 
 /// Public definition used to generate Owner jsonrpc api.
@@ -45,7 +45,7 @@ pub trait OwnerRpc: Sync + Send {
 	# Json rpc example
 
 	```
-	# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+	# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 	# r#"
 	{
 		"jsonrpc": "2.0",
@@ -84,7 +84,7 @@ pub trait OwnerRpc: Sync + Send {
 	# Json rpc example
 
 	```
-	# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+	# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 	# r#"
 	{
 		"jsonrpc": "2.0",
@@ -114,7 +114,7 @@ pub trait OwnerRpc: Sync + Send {
 	# Json rpc example
 
 	```
-	# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+	# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 	# r#"
 	{
 		"jsonrpc": "2.0",
@@ -144,7 +144,7 @@ pub trait OwnerRpc: Sync + Send {
 	# Json rpc example
 
 	```
-	# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+	# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 	# r#"
 	{
 		"jsonrpc": "2.0",
@@ -219,7 +219,7 @@ pub trait OwnerRpc: Sync + Send {
 	# Json rpc example
 
 	```
-		# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+		# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 		# r#"
 		{
 			"jsonrpc": "2.0",
@@ -313,7 +313,7 @@ pub trait OwnerRpc: Sync + Send {
 	Networked version of [Owner::retrieve_summary_info](struct.Owner.html#method.retrieve_summary_info).
 
 	```
-	# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+	# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 	# r#"
 	{
 		"jsonrpc": "2.0",
@@ -364,7 +364,7 @@ pub trait OwnerRpc: Sync + Send {
 		Networked version of [Owner::init_send_tx](struct.Owner.html#method.init_send_tx).
 
 	```
-		# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+		# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 		# r#"
 		{
 			"jsonrpc": "2.0",
@@ -397,7 +397,7 @@ pub trait OwnerRpc: Sync + Send {
 		# "#
 		# ,false, 4, false, false, false, false);
 
-			# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+			# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 			# r#"
 			{
 				"jsonrpc": "2.0",
@@ -501,7 +501,7 @@ pub trait OwnerRpc: Sync + Send {
 
 	```
 		# // Minimal list of arguments
-		# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+		# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 		# r#"
 		{
 			"jsonrpc": "2.0",
@@ -571,7 +571,7 @@ pub trait OwnerRpc: Sync + Send {
 		# ,false, 4, false, false, false, false);
 		#
 		# // Full number of arguments
-		# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+		# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 		# r#"
 		{
 			"jsonrpc": "2.0",
@@ -653,7 +653,7 @@ pub trait OwnerRpc: Sync + Send {
 
 	```
 		# // NOTE!!! Second InitTxArgs is not complete, using default values
-		# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+		# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 		# r#"
 		{
 			"jsonrpc": "2.0",
@@ -799,7 +799,7 @@ pub trait OwnerRpc: Sync + Send {
 	Networked version of [Owner::tx_lock_outputs](struct.Owner.html#method.tx_lock_outputs).
 
 	```
-	# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+	# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 	# r#"
 	{
 		"jsonrpc": "2.0",
@@ -887,7 +887,7 @@ pub trait OwnerRpc: Sync + Send {
 	Networked version of [Owner::finalize_tx](struct.Owner.html#method.finalize_tx).
 
 	```
-	# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+	# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 	# r#"
 	{
 		"jsonrpc": "2.0",
@@ -1049,7 +1049,7 @@ pub trait OwnerRpc: Sync + Send {
 	Networked version of [Owner::post_tx](struct.Owner.html#method.post_tx).
 
 	```
-	# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+	# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 	# r#"
 	{
 		"jsonrpc": "2.0",
@@ -1117,7 +1117,7 @@ pub trait OwnerRpc: Sync + Send {
 
 
 	```
-	# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+	# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 	# r#"
 	{
 		"jsonrpc": "2.0",
@@ -1141,7 +1141,7 @@ pub trait OwnerRpc: Sync + Send {
 	# "#
 	# , false, 5, true, true, false, false);
 	#
-	# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+	# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 	# r#"
 	{
 		"jsonrpc": "2.0",
@@ -1173,7 +1173,7 @@ pub trait OwnerRpc: Sync + Send {
 
 	```
 	# // Short form
-	# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+	# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 	# r#"
 	{
 		"jsonrpc": "2.0",
@@ -1242,7 +1242,7 @@ pub trait OwnerRpc: Sync + Send {
 	Networked version of [Owner::verify_slate_messages](struct.Owner.html#method.verify_slate_messages).
 
 	```
-	# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+	# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 	# r#"
 	{
 		"jsonrpc": "2.0",
@@ -1323,7 +1323,7 @@ pub trait OwnerRpc: Sync + Send {
 
 
 	```
-	# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+	# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 	# r#"
 	{
 		"jsonrpc": "2.0",
@@ -1352,7 +1352,7 @@ pub trait OwnerRpc: Sync + Send {
 
 
 	```
-	# grin_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
+	# mimble_wallet_api::doctest_helper_json_rpc_owner_assert_response!(
 	# r#"
 	{
 		"jsonrpc": "2.0",
@@ -1551,10 +1551,10 @@ pub fn run_doctest_owner(
 	payment_proof: bool,
 ) -> Result<Option<serde_json::Value>, String> {
 	use easy_jsonrpc_mw::Handler;
-	use grin_wallet_impls::test_framework::{self, LocalWalletClient, WalletProxy};
-	use grin_wallet_impls::{DefaultLCProvider, DefaultWalletImpl};
-	use grin_wallet_libwallet::{api_impl, WalletInst};
-	use grin_wallet_util::grin_keychain::ExtKeychain;
+	use mimble_wallet_impls::test_framework::{self, LocalWalletClient, WalletProxy};
+	use mimble_wallet_impls::{DefaultLCProvider, DefaultWalletImpl};
+	use mimble_wallet_libwallet::{api_impl, WalletInst};
+	use mimble_wallet_util::mimble_keychain::ExtKeychain;
 
 	use crate::core::global;
 	use crate::core::global::ChainTypes;
@@ -1807,7 +1807,7 @@ macro_rules! doctest_helper_json_rpc_owner_assert_response {
 		// TODO: Fix properly
 		#[cfg(not(target_os = "windows"))]
 			{
-			use grin_wallet_api::run_doctest_owner;
+			use mimble_wallet_api::run_doctest_owner;
 			use serde_json;
 			use serde_json::Value;
 			use tempfile::tempdir;

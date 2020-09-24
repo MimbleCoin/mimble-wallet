@@ -1,7 +1,7 @@
 [package]
-name = "grin_wallet_util"
+name = "mimble_wallet_util"
 version = "3.2.2"
-authors = ["Grin Developers <mimblewimble@lists.launchpad.net>"]
+authors = ["Mimble Developers <Forkladdgud@protonmail.com>"]
 description = "Util, for generic utilities and to re-export grin crates"
 license = "Apache-2.0"
 repository = "https://github.com/MimbleCoin/mimble-node-wallet"
@@ -20,36 +20,36 @@ failure = "0.1"
 failure_derive = "0.1"
 
 # For Release
-#grin_core = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
-#grin_keychain = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
-#grin_chain = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
-#grin_util = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
-#grin_api = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
-#grin_store = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
+#mimble_core = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
+#mimble_keychain = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
+#mimble_chain = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
+#mimble_util = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
+#mimble_api = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
+#mimble_store = { git = "https://github.com/MimbleCoin/mimble-node", tag = "3.2.2" }
 
 # For beta release
-# grin_core = { git = "https://github.com/MimbleCoin/mimble-node", tag = "2.4.0" }
-# grin_keychain = { git = "https://github.com/MimbleCoin/mimble-node", tag = "2.4.0" }
-# grin_chain = { git = "https://github.com/MimbleCoin/mimble-node", tag = "2.4.0" }
-# grin_util = { git = "https://github.com/MimbleCoin/mimble-node", tag = "2.4.0" }
-# grin_api = { git = "https://github.com/MimbleCoin/mimble-node", tag = "2.4.0" }
-# grin_store = { git = "https://github.com/MimbleCoin/mimble-node", tag = "2.4.0" }
+# mimble_core = { git = "https://github.com/MimbleCoin/mimble-node", tag = "2.4.0" }
+# mimble_keychain = { git = "https://github.com/MimbleCoin/mimble-node", tag = "2.4.0" }
+# mimble_chain = { git = "https://github.com/MimbleCoin/mimble-node", tag = "2.4.0" }
+# mimble_util = { git = "https://github.com/MimbleCoin/mimble-node", tag = "2.4.0" }
+# mimble_api = { git = "https://github.com/MimbleCoin/mimble-node", tag = "2.4.0" }
+# mimble_store = { git = "https://github.com/MimbleCoin/mimble-node", tag = "2.4.0" }
 
 # For bleeding edge
-grin_core = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
-grin_keychain = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
-grin_chain = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
-grin_util = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
-grin_api = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
-grin_store = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
+mimble_core = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
+mimble_keychain = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
+mimble_chain = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
+mimble_util = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
+mimble_api = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
+mimble_store = { git = "https://github.com/MimbleCoin/mimble-node", branch = "master" }
 
 # For local testing
-#grin_core = { path = "../../mwc-node/core"}
-#grin_keychain = { path = "../../mwc-node/keychain"}
-#grin_chain = { path = "../../mwc-node/chain"}
-#grin_util = { path = "../../mwc-node/util"}
-#grin_api = { path = "../../mwc-node/api"}
-#grin_store = { path = "../../mwc-node/store"}
+#mimble_core = { path = "../../mimble-node/core"}
+#mimble_keychain = { path = "../../mimble-node/keychain"}
+#mimble_chain = { path = "../../mimble-node/chain"}
+#mimble_util = { path = "../../mimble-node/util"}
+#mimble_api = { path = "../../mimble-node/api"}
+#mimble_store = { path = "../../mimble-node/store"}
 
 [dev-dependencies]
 pretty_assertions = "0.5.1"

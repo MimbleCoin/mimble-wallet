@@ -77,7 +77,7 @@ pub mod ov3_serde {
 
 /// Serializes an ed25519 PublicKey to and from hex
 pub mod dalek_pubkey_serde {
-	use crate::grin_util::{from_hex, to_hex};
+	use crate::mimble_util::{from_hex, to_hex};
 	use ed25519_dalek::PublicKey as DalekPublicKey;
 	use serde::{Deserialize, Deserializer, Serializer};
 
@@ -118,7 +118,7 @@ pub mod option_dalek_pubkey_serde {
 	use serde::de::Error;
 	use serde::{Deserialize, Deserializer, Serializer};
 
-	use crate::grin_util::{from_hex, to_hex};
+	use crate::mimble_util::{from_hex, to_hex};
 
 	///
 	pub fn serialize<S>(key: &Option<DalekPublicKey>, serializer: S) -> Result<S::Ok, S::Error>
@@ -162,7 +162,7 @@ pub mod dalek_sig_serde {
 	use serde::de::Error;
 	use serde::{Deserialize, Deserializer, Serializer};
 
-	use crate::grin_util::{from_hex, to_hex};
+	use crate::mimble_util::{from_hex, to_hex};
 	use crate::signature::Signature;
 
 	///
@@ -194,7 +194,7 @@ pub mod option_dalek_sig_serde {
 	use serde::de::Error;
 	use serde::{Deserialize, Deserializer, Serializer};
 
-	use crate::grin_util::{from_hex, to_hex};
+	use crate::mimble_util::{from_hex, to_hex};
 	use crate::signature::Signature;
 
 	///
@@ -239,7 +239,7 @@ mod test {
 	use super::*;
 	use rand::rngs::mock::StepRng;
 
-	use crate::grin_util::{secp, static_secp_instance};
+	use crate::mimble_util::{secp, static_secp_instance};
 	use ed25519_dalek::Keypair;
 	use ed25519_dalek::PublicKey as DalekPublicKey;
 	use ed25519_dalek::SecretKey as DalekSecretKey;

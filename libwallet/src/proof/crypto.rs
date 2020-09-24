@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use grin_wallet_util::grin_util::secp::key::{PublicKey, SecretKey};
-use grin_wallet_util::grin_util::secp::pedersen::Commitment;
-use grin_wallet_util::grin_util::secp::{Message, Secp256k1, Signature};
+use mimble_wallet_util::mimble_util::secp::key::{PublicKey, SecretKey};
+use mimble_wallet_util::mimble_util::secp::pedersen::Commitment;
+use mimble_wallet_util::mimble_util::secp::{Message, Secp256k1, Signature};
 
 use super::base58;
 use crate::error::{Error, ErrorKind};
-use crate::grin_util as util;
+use crate::mimble_util as util;
 use sha2::{Digest, Sha256};
 
 /// Build a public key for the given private key

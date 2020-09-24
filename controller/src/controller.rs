@@ -17,24 +17,24 @@
 use crate::api::{self, ApiServer, BasicAuthMiddleware, ResponseFuture, Router, TLSConfig};
 use crate::libwallet::{
 	address, NodeClient, NodeVersionInfo, Slate, WalletInst, WalletLCProvider,
-	GRIN_BLOCK_HEADER_VERSION,
+	MIMBLE_BLOCK_HEADER_VERSION,
 };
 use crate::util::secp::key::SecretKey;
 use crate::util::{from_hex, static_secp_instance, to_base64, Mutex};
 use crate::{Error, ErrorKind};
-use grin_wallet_api::JsonId;
-use grin_wallet_util::OnionV3Address;
+use mimble_wallet_api::JsonId;
+use mimble_wallet_util::OnionV3Address;
 use hyper::body;
 use hyper::header::HeaderValue;
 use hyper::{Body, Request, Response, StatusCode};
 use serde::{Deserialize, Serialize};
 use serde_json;
 
-use grin_wallet_impls::{Address, CloseReason, MWCMQPublisher, MWCMQSAddress, MWCMQSubscriber, Publisher,
+use mimble_wallet_impls::{Address, CloseReason, MWCMQPublisher, MWCMQSAddress, MWCMQSubscriber, Publisher,
 						Subscriber, SubscriptionHandler, KeybasePublisher, KeybaseSubscriber};
-use grin_wallet_libwallet::wallet_lock;
-use grin_wallet_libwallet::swap::message::Message;
-use grin_wallet_util::grin_core::core;
+use mimble_wallet_libwallet::wallet_lock;
+use mimble_wallet_libwallet::swap::message::Message;
+use mimble_wallet_util::mimble_core::core;
 
 use crate::apiwallet::{
 	EncryptedRequest, EncryptedResponse, EncryptionErrorResponse, Foreign,
@@ -46,8 +46,8 @@ use crate::impls::tor::config as tor_config;
 use crate::impls::tor::process as tor_process;
 use crate::keychain::Keychain;
 use easy_jsonrpc_mw::{Handler, MaybeReply};
-use grin_wallet_libwallet::proof::crypto;
-use grin_wallet_libwallet::proof::proofaddress::ProvableAddress;
+use mimble_wallet_libwallet::proof::crypto;
+use mimble_wallet_libwallet::proof::proofaddress::ProvableAddress;
 use std::collections::HashMap;
 use std::net::SocketAddr;
 use std::pin::Pin;
@@ -92,7 +92,7 @@ fn check_middleware(
 				bhv = n.block_header_version;
 			}
 			if let Some(s) = slate {
-				if bhv > 3 && s.version_info.block_header_version < GRIN_BLOCK_HEADER_VERSION {
+				if bhv > 3 && s.version_info.block_header_version < MIMBLE_BLOCK_HEADER_VERSION {
 					Err(crate::libwallet::ErrorKind::Compatibility(
 						"Incoming Slate is not compatible with this wallet. \
 						 Please upgrade the node or use a different one."
@@ -361,7 +361,7 @@ impl<L, C, K> Controller<L, C, K>
 				}
 
 				//create the args
-				let params = grin_wallet_libwallet::InitTxArgs {
+				let params = mimble_wallet_libwallet::InitTxArgs {
 					src_acct_name: None, //it will be set in the implementation layer.
 					amount: slate.amount,
 					minimum_confirmations: 10,
@@ -621,7 +621,7 @@ pub fn start_mwcmqs_listener<L, C, K>(
 		C: NodeClient + 'static,
 		K: Keychain + 'static,
 {
-	if grin_wallet_impls::adapters::get_mwcmqs_brocker().is_some() {
+	if mimble_wallet_impls::adapters::get_mwcmqs_brocker().is_some() {
 		return Err(ErrorKind::GenericError("mwcmqs listener is already running".to_string()).into());
 	}
 
@@ -732,7 +732,7 @@ pub fn start_keybase_listener<L, C, K>(
 		C: NodeClient + 'static,
 		K: Keychain + 'static,
 {
-	if grin_wallet_impls::adapters::get_keybase_brocker().is_some() {
+	if mimble_wallet_impls::adapters::get_keybase_brocker().is_some() {
 		return Err(ErrorKind::GenericError("keybase listener is already running".to_string()).into());
 	}
 

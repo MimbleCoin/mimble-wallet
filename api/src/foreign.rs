@@ -82,14 +82,14 @@ where
 	/// Create a new API instance with the given wallet instance. All subsequent
 	/// API calls will operate on this instance of the wallet.
 	///
-	/// Each method will call the [`WalletBackend`](../grin_wallet_libwallet/types/trait.WalletBackend.html)'s
-	/// [`open_with_credentials`](../grin_wallet_libwallet/types/trait.WalletBackend.html#tymethod.open_with_credentials)
+	/// Each method will call the [`WalletBackend`](../mimble_wallet_libwallet/types/trait.WalletBackend.html)'s
+	/// [`open_with_credentials`](../mimble_wallet_libwallet/types/trait.WalletBackend.html#tymethod.open_with_credentials)
 	/// (initialising a keychain with the master seed), perform its operation, then close the keychain
-	/// with a call to [`close`](../grin_wallet_libwallet/types/trait.WalletBackend.html#tymethod.close)
+	/// with a call to [`close`](../mimble_wallet_libwallet/types/trait.WalletBackend.html#tymethod.close)
 	///
 	/// # Arguments
 	/// * `wallet_in` - A reference-counted mutex containing an implementation of the
-	/// [`WalletBackend`](../grin_wallet_libwallet/types/trait.WalletBackend.html) trait.
+	/// [`WalletBackend`](../mimble_wallet_libwallet/types/trait.WalletBackend.html) trait.
 	/// * `keychain_mask` - Mask value stored internally to use when calling a wallet
 	/// whose seed has been XORed with a token value (such as when running the foreign
 	/// and owner listeners in the same instance)
@@ -101,12 +101,12 @@ where
 	///
 	/// # Example
 	/// ```
-	/// use grin_wallet_util::grin_keychain as keychain;
-	/// use grin_wallet_util::grin_util as util;
-	/// use grin_wallet_api as api;
-	/// use grin_wallet_config as config;
-	/// use grin_wallet_impls as impls;
-	/// use grin_wallet_libwallet as libwallet;
+	/// use mimble_wallet_util::mimble_keychain as keychain;
+	/// use mimble_wallet_util::mimble_util as util;
+	/// use mimble_wallet_api as api;
+	/// use mimble_wallet_config as config;
+	/// use mimble_wallet_impls as impls;
+	/// use mimble_wallet_libwallet as libwallet;
 	///
 	/// use keychain::ExtKeychain;
 	/// use tempfile::tempdir;
@@ -182,11 +182,11 @@ where
 	/// # Arguments
 	/// None
 	/// # Returns
-	/// * [`VersionInfo`](../grin_wallet_libwallet/api_impl/types/struct.VersionInfo.html)
+	/// * [`VersionInfo`](../mimble_wallet_libwallet/api_impl/types/struct.VersionInfo.html)
 	/// # Example
 	/// Set up as in [`new`](struct.Foreign.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env_foreign!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env_foreign!(wallet, wallet_config);
 	///
 	/// let mut api_foreign = Foreign::new(wallet.clone(), None, None);
 	///
@@ -212,13 +212,13 @@ where
 	///
 	/// All potential coinbase outputs are created as 'Unconfirmed' with the coinbase flag set.
 	/// If a potential coinbase output is found on the chain after a wallet update, it status
-	/// is set to `Unsent` and a [Transaction Log Entry](../grin_wallet_libwallet/types/struct.TxLogEntry.html)
+	/// is set to `Unsent` and a [Transaction Log Entry](../mimble_wallet_libwallet/types/struct.TxLogEntry.html)
 	/// will be created. Note the output will be unspendable until the coinbase maturity period
 	/// has expired.
 	///
 	/// # Arguments
 	///
-	/// * `block_fees` - A [`BlockFees`](../grin_wallet_libwallet/api_impl/types/struct.BlockFees.html)
+	/// * `block_fees` - A [`BlockFees`](../mimble_wallet_libwallet/api_impl/types/struct.BlockFees.html)
 	/// struct, set up as follows:
 	///
 	/// `fees` - should contain the sum of all transaction fees included in the potential
@@ -231,14 +231,14 @@ where
 	/// id will be assigned
 	///
 	/// # Returns
-	/// * `Ok`([`cb_data`](../grin_wallet_libwallet/api_impl/types/struct.CbData.html)`)` if successful. This
+	/// * `Ok`([`cb_data`](../mimble_wallet_libwallet/api_impl/types/struct.CbData.html)`)` if successful. This
 	/// will contain the corresponding output, kernel and keyID used to create the coinbase output.
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Foreign.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env_foreign!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env_foreign!(wallet, wallet_config);
 	///
 	/// let mut api_foreign = Foreign::new(wallet.clone(), None, None);
 	///
@@ -285,16 +285,16 @@ where
 	///
 	/// # Arguments
 	///
-	/// * `slate` - The transaction [`Slate`](../grin_wallet_libwallet/slate/struct.Slate.html).
+	/// * `slate` - The transaction [`Slate`](../mimble_wallet_libwallet/slate/struct.Slate.html).
 	///
 	/// # Returns
 	/// * `Ok(())` if successful and the signatures validate
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Foreign.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env_foreign!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env_foreign!(wallet, wallet_config);
 	///
 	/// let mut api_foreign = Foreign::new(wallet.clone(), None, None);
 	///
@@ -327,7 +327,7 @@ where
 	}
 
 	/// Recieve a tranaction created by another party, returning the modified
-	/// [`Slate`](../grin_wallet_libwallet/slate/struct.Slate.html) object, modified with
+	/// [`Slate`](../mimble_wallet_libwallet/slate/struct.Slate.html) object, modified with
 	/// the recipient's output for the transaction amount, and public signature data. This slate can
 	/// then be sent back to the sender to finalize the transaction via the
 	/// [Owner API's `finalize_tx`](struct.Owner.html#method.finalize_tx) method.
@@ -338,11 +338,11 @@ where
 	/// will be updated with the results of Signing round 1 and 2, adding the recipient's public
 	/// nonce, public excess value, and partial signature to the slate.
 	///
-	/// Also creates a corresponding [Transaction Log Entry](../grin_wallet_libwallet/types/struct.TxLogEntry.html)
+	/// Also creates a corresponding [Transaction Log Entry](../mimble_wallet_libwallet/types/struct.TxLogEntry.html)
 	/// in the wallet's transaction log.
 	///
 	/// # Arguments
-	/// * `slate` - The transaction [`Slate`](../grin_wallet_libwallet/slate/struct.Slate.html).
+	/// * `slate` - The transaction [`Slate`](../mimble_wallet_libwallet/slate/struct.Slate.html).
 	/// The slate should contain the results of the sender's round 1 (e.g, public nonce and public
 	/// excess value).
 	/// * `dest_acct_name` - The name of the account into which the slate should be received. If
@@ -356,9 +356,9 @@ where
 	///
 	/// # Returns
 	/// * a result containing:
-	/// * `Ok`([`slate`](../grin_wallet_libwallet/slate/struct.Slate.html)`)` if successful,
+	/// * `Ok`([`slate`](../mimble_wallet_libwallet/slate/struct.Slate.html)`)` if successful,
 	/// containing the new slate updated with the recipient's output and public signing information.
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Remarks
 	///
@@ -367,7 +367,7 @@ where
 	/// # Example
 	/// Set up as in [new](struct.Foreign.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env_foreign!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env_foreign!(wallet, wallet_config);
 	///
 	/// let mut api_foreign = Foreign::new(wallet.clone(), None, None);
 	/// # let slate = Slate::blank(2);
@@ -429,18 +429,18 @@ where
 	/// via the [`get_stored_tx`](struct.Owner.html#method.get_stored_tx) function.
 	///
 	/// # Arguments
-	/// * `slate` - The transaction [`Slate`](../grin_wallet_libwallet/slate/struct.Slate.html). The
+	/// * `slate` - The transaction [`Slate`](../mimble_wallet_libwallet/slate/struct.Slate.html). The
 	/// payer should have filled in round 1 and 2.
 	///
 	/// # Returns
-	/// * Ok([`slate`](../grin_wallet_libwallet/slate/struct.Slate.html)) if successful,
+	/// * Ok([`slate`](../mimble_wallet_libwallet/slate/struct.Slate.html)) if successful,
 	/// containing the new finalized slate.
-	/// * or [`libwallet::Error`](../grin_wallet_libwallet/struct.Error.html) if an error is encountered.
+	/// * or [`libwallet::Error`](../mimble_wallet_libwallet/struct.Error.html) if an error is encountered.
 	///
 	/// # Example
 	/// Set up as in [`new`](struct.Owner.html#method.new) method above.
 	/// ```
-	/// # grin_wallet_api::doctest_helper_setup_doc_env_foreign!(wallet, wallet_config);
+	/// # mimble_wallet_api::doctest_helper_setup_doc_env_foreign!(wallet, wallet_config);
 	///
 	/// let mut api_owner = Owner::new(wallet.clone(), None, None);
 	/// let mut api_foreign = Foreign::new(wallet.clone(), None, None);
@@ -488,12 +488,12 @@ where
 #[macro_export]
 macro_rules! doctest_helper_setup_doc_env_foreign {
 	($wallet:ident, $wallet_config:ident) => {
-		use grin_wallet_api as api;
-		use grin_wallet_config as config;
-		use grin_wallet_impls as impls;
-		use grin_wallet_libwallet as libwallet;
-		use grin_wallet_util::grin_keychain as keychain;
-		use grin_wallet_util::grin_util as util;
+		use mimble_wallet_api as api;
+		use mimble_wallet_config as config;
+		use mimble_wallet_impls as impls;
+		use mimble_wallet_libwallet as libwallet;
+		use mimble_wallet_util::mimble_keychain as keychain;
+		use mimble_wallet_util::mimble_util as util;
 
 		use keychain::ExtKeychain;
 		use tempfile::tempdir;

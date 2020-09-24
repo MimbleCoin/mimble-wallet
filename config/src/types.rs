@@ -18,7 +18,7 @@ use failure::Fail;
 use std::io;
 use std::path::PathBuf;
 
-use crate::config::GRIN_WALLET_DIR;
+use crate::config::MIMBLE_WALLET_DIR;
 use crate::core::global::ChainTypes;
 use crate::util::logger::LoggingConfig;
 
@@ -130,7 +130,7 @@ impl WalletConfig {
 		//mqs feature
 		self.wallet_data_dir
 			.clone()
-			.unwrap_or(GRIN_WALLET_DIR.to_string())
+			.unwrap_or(MIMBLE_WALLET_DIR.to_string())
 	}
 
 	pub fn grinbox_address_index(&self) -> u32 {

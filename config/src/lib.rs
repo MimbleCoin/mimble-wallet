@@ -23,8 +23,8 @@
 #[macro_use]
 extern crate serde_derive;
 
-use grin_wallet_util::grin_core as core;
-use grin_wallet_util::grin_util as util;
+use mimble_wallet_util::mimble_core as core;
+use mimble_wallet_util::mimble_util as util;
 
 mod comments;
 pub mod config;
@@ -32,7 +32,7 @@ pub mod config;
 pub mod types;
 
 pub use crate::config::{
-	config_file_exists, initial_setup_wallet, GRIN_WALLET_DIR, WALLET_CONFIG_FILE_NAME,
+	config_file_exists, initial_setup_wallet, MIMBLE_WALLET_DIR, WALLET_CONFIG_FILE_NAME,
 };
 pub use crate::types::{
 	ConfigError, GlobalWalletConfig, GlobalWalletConfigMembers, MQSConfig, TorConfig, WalletConfig,

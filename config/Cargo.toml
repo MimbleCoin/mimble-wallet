@@ -1,11 +1,11 @@
 [package]
-name = "grin_wallet_config"
+name = "mimble_wallet_config"
 version = "3.2.2"
-authors = ["Grin Developers <mimblewimble@lists.launchpad.net>"]
+authors = ["Mimble Developers <Forkladdgud@protonmail.com>"]
 description = "Configuration for grin wallet , a simple, private and scalable cryptocurrency implementation based on the MimbleWimble chain format."
 license = "Apache-2.0"
-repository = "https://github.com/mimblewimble/grin-wallet"
-keywords = [ "crypto", "grin", "mimblewimble" ]
+repository = "https://github.com/MimbleCoin/mimble-wallet"
+keywords = [ "crypto", "mimble", "mimblewimble" ]
 workspace = ".."
 edition = "2018"
 
@@ -18,7 +18,7 @@ dirs = "1"
 toml = "0.4"
 serde_derive = "1"
 
-grin_wallet_util = { path = "../util", version = "3.2.2" }
+mimble_wallet_util = { path = "../util", version = "3.2.2" }
 
 [dev-dependencies]
 pretty_assertions = "0.5.1"

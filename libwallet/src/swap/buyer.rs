@@ -23,12 +23,12 @@ use crate::swap::bitcoin::BtcData;
 use crate::swap::fsm::state::StateId;
 use crate::swap::multisig::{Builder as MultisigBuilder, ParticipantData as MultisigParticipant};
 use crate::{NodeClient, ParticipantData as TxParticipant, Slate, SlateVersion, VersionedSlate};
-use grin_core::core::KernelFeatures;
-use grin_core::libtx::{build, proof, tx_fee};
-use grin_keychain::{BlindSum, BlindingFactor, SwitchCommitmentType};
-use grin_util::secp::aggsig;
-use grin_util::secp::key::{PublicKey, SecretKey};
-use grin_util::secp::pedersen::RangeProof;
+use mimble_core::core::KernelFeatures;
+use mimble_core::libtx::{build, proof, tx_fee};
+use mimble_keychain::{BlindSum, BlindingFactor, SwitchCommitmentType};
+use mimble_util::secp::aggsig;
+use mimble_util::secp::key::{PublicKey, SecretKey};
+use mimble_util::secp::pedersen::RangeProof;
 use rand::thread_rng;
 use std::mem;
 use uuid::Uuid;
@@ -399,7 +399,7 @@ impl BuyApi {
 
 		// Add multisig output to slate (with invalid proof)
 		let mut proof = RangeProof::zero();
-		proof.plen = grin_util::secp::constants::MAX_PROOF_SIZE;
+		proof.plen = mimble_util::secp::constants::MAX_PROOF_SIZE;
 
 		tx_add_output(slate, swap.multisig.commit(keychain.secp())?, proof);
 

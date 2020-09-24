@@ -13,10 +13,10 @@
 // limitations under the License.
 
 extern crate colored;
-use crate::grin_util as util;
-use crate::grin_util::secp::key::{PublicKey, SecretKey};
-use crate::grin_util::secp::pedersen::Commitment;
-use crate::grin_util::secp::{pedersen, ContextFlag, Secp256k1, Signature};
+use crate::mimble_util as util;
+use crate::mimble_util::secp::key::{PublicKey, SecretKey};
+use crate::mimble_util::secp::pedersen::Commitment;
+use crate::mimble_util::secp::{pedersen, ContextFlag, Secp256k1, Signature};
 use crate::proof::crypto::Hex;
 
 use super::crypto;
@@ -35,8 +35,8 @@ use std::{fs, path};
 use util::Mutex;
 
 use colored::*;
-use grin_core::core::amount_to_hr_string;
-use grin_core::global;
+use mimble_core::core::amount_to_hr_string;
+use mimble_core::global;
 use std::collections::HashSet;
 
 /// Dir name with proof files
@@ -679,7 +679,7 @@ pub fn verify_tx_proof_wrapper(
 
 	let outputs = outputs
 		.iter()
-		.map(|o| grin_util::to_hex(o.0.to_vec()))
+		.map(|o| mimble_util::to_hex(o.0.to_vec()))
 		.collect();
 
 	Ok((

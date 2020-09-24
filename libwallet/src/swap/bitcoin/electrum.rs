@@ -18,7 +18,7 @@ use crate::swap::ErrorKind;
 use bitcoin::consensus::Decodable;
 use bitcoin::{Address, OutPoint, Script, Transaction};
 use bitcoin_hashes::sha256d::Hash;
-use grin_util::{from_hex, to_hex};
+use mimble_util::{from_hex, to_hex};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::io::Cursor;
@@ -400,9 +400,9 @@ mod tests {
 	use crate::swap::types::Network;
 	use bitcoin_hashes::hex::FromHex;
 	use bitcoin_hashes::sha256d::Hash;
-	use grin_util::from_hex;
-	use grin_util::secp::key::PublicKey;
-	use grin_util::secp::{ContextFlag, Secp256k1};
+	use mimble_util::from_hex;
+	use mimble_util::secp::key::PublicKey;
+	use mimble_util::secp::{ContextFlag, Secp256k1};
 	use rand::{thread_rng, Rng};
 
 	#[test]

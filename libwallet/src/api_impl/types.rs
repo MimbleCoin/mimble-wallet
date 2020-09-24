@@ -14,9 +14,9 @@
 
 //! Types specific to the wallet api, mostly argument serialization
 
-use crate::grin_core::libtx::secp_ser;
-use crate::grin_keychain::Identifier;
-use crate::grin_util::secp::pedersen;
+use crate::mimble_core::libtx::secp_ser;
+use crate::mimble_keychain::Identifier;
+use crate::mimble_util::secp::pedersen;
 use crate::proof::proofaddress;
 use crate::proof::proofaddress::ProvableAddress;
 use crate::slate_versions::SlateVersion;
@@ -52,7 +52,7 @@ pub struct SendTXArgs {
 pub struct InitTxArgs {
 	/// The human readable account name from which to draw outputs
 	/// for the transaction, overriding whatever the active account is as set via the
-	/// [`set_active_account`](../grin_wallet_api/owner/struct.Owner.html#method.set_active_account) method.
+	/// [`set_active_account`](../mimble_wallet_api/owner/struct.Owner.html#method.set_active_account) method.
 	///
 	#[serde(default)]
 	pub src_acct_name: Option<String>,
@@ -211,7 +211,7 @@ impl InitTxSendArgs {
 pub struct IssueInvoiceTxArgs {
 	/// The human readable account name to which the received funds should be added
 	/// overriding whatever the active account is as set via the
-	/// [`set_active_account`](../grin_wallet_api/owner/struct.Owner.html#method.set_active_account) method.
+	/// [`set_active_account`](../mimble_wallet_api/owner/struct.Owner.html#method.set_active_account) method.
 	#[serde(default)]
 	pub dest_acct_name: Option<String>,
 	/// The invoice amount in nanogrins. (`1 G = 1_000_000_000nG`)

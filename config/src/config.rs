@@ -32,38 +32,38 @@ use crate::types::{MQSConfig, TorConfig, WalletConfig};
 use crate::util::logger::LoggingConfig;
 
 /// Wallet configuration file name
-pub const WALLET_CONFIG_FILE_NAME: &str = "mwc-wallet.toml";
-const WALLET_LOG_FILE_NAME: &str = "mwc-wallet.log";
-const GRIN_HOME: &str = ".mwc";
+pub const WALLET_CONFIG_FILE_NAME: &str = "mimble-wallet.toml";
+const WALLET_LOG_FILE_NAME: &str = "mimble-wallet.log";
+const MIMBLE_HOME: &str = ".mimble";
 /// Wallet data directory
-pub const GRIN_WALLET_DIR: &str = "wallet_data";
+pub const MIMBLE_WALLET_DIR: &str = "wallet_data";
 /// Node API secret
 pub const API_SECRET_FILE_NAME: &str = ".api_secret";
 /// Owner API secret
 pub const OWNER_API_SECRET_FILE_NAME: &str = ".owner_api_secret";
 
-fn get_grin_path(
+fn get_mimble_path(
 	chain_type: &global::ChainTypes,
 	create_path: bool,
 ) -> Result<PathBuf, ConfigError> {
 	// Check if grin dir exists
-	let mut grin_path = match dirs::home_dir() {
+	let mut mimble_path = match dirs::home_dir() {
 		Some(p) => p,
 		None => PathBuf::new(),
 	};
-	grin_path.push(GRIN_HOME);
-	grin_path.push(chain_type.shortname());
+	mimble_path.push(MIMBLE_HOME);
+	mimble_path.push(chain_type.shortname());
 	// Create if the default path doesn't exist
-	if !grin_path.exists() && create_path {
-		fs::create_dir_all(grin_path.clone())?;
+	if !mimble_path.exists() && create_path {
+		fs::create_dir_all(mimble_path.clone())?;
 	}
 
-	if !grin_path.exists() {
+	if !mimble_path.exists() {
 		Err(ConfigError::PathNotFoundError(String::from(
-			grin_path.to_str().unwrap(),
+			mimble_path.to_str().unwrap(),
 		)))
 	} else {
-		Ok(grin_path)
+		Ok(mimble_path)
 	}
 }
 
@@ -119,11 +119,11 @@ fn check_api_secret_file(
 	data_path: Option<PathBuf>,
 	file_name: &str,
 ) -> Result<(), ConfigError> {
-	let grin_path = match data_path {
+	let mimble_path = match data_path {
 		Some(p) => p,
-		None => get_grin_path(chain_type, false)?,
+		None => get_mimble_path(chain_type, false)?,
 	};
-	let mut api_secret_path = grin_path;
+	let mut api_secret_path = mimble_path;
 	api_secret_path.push(file_name);
 	if !api_secret_path.exists() {
 		init_api_secret(&api_secret_path)
@@ -151,13 +151,13 @@ pub fn initial_setup_wallet(
 		(path, GlobalWalletConfig::new(p.to_str().unwrap())?)
 	} else {
 		// Check if grin dir exists
-		let grin_path = match data_path {
+		let mimble_path = match data_path {
 			Some(p) => p,
-			None => get_grin_path(chain_type, create_path)?,
+			None => get_mimble_path(chain_type, create_path)?,
 		};
 
 		// Get path to default config file
-		let mut config_path = grin_path.clone();
+		let mut config_path = mimble_path.clone();
 		config_path.push(WALLET_CONFIG_FILE_NAME);
 
 		// Return defaults if file doesn't exist
@@ -166,8 +166,8 @@ pub fn initial_setup_wallet(
 				let mut default_config = GlobalWalletConfig::for_chain(chain_type);
 				default_config.config_file_path = Some(config_path);
 				// update paths relative to current dir
-				default_config.update_paths(&grin_path, wallet_data_dir);
-				(grin_path, default_config)
+				default_config.update_paths(&mimble_path, wallet_data_dir);
+				(mimble_path, default_config)
 			}
 			true => {
 				let mut path = config_path.clone();
@@ -267,7 +267,7 @@ impl GlobalWalletConfig {
 	/// Update paths
 	pub fn update_paths(&mut self, wallet_home: &PathBuf, wallet_data_dir: Option<&str>) {
 		let mut wallet_path = wallet_home.clone();
-		wallet_path.push(wallet_data_dir.unwrap_or(GRIN_WALLET_DIR));
+		wallet_path.push(wallet_data_dir.unwrap_or(MIMBLE_WALLET_DIR));
 		self.members.as_mut().unwrap().wallet.data_file_dir =
 			wallet_path.to_str().unwrap().to_owned();
 		let mut secret_path = wallet_home.clone();

@@ -14,8 +14,8 @@
 
 //! Wallet key management functions
 use crate::error::{Error, ErrorKind};
-use crate::grin_keychain::{ChildNumber, ExtKeychain, Identifier, Keychain};
-use crate::grin_util::secp::key::SecretKey;
+use crate::mimble_keychain::{ChildNumber, ExtKeychain, Identifier, Keychain};
+use crate::mimble_util::secp::key::SecretKey;
 use crate::types::{AcctPathMapping, NodeClient, WalletBackend};
 
 /// Get next available key in the wallet for a given parent

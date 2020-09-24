@@ -26,10 +26,10 @@ use crate::swap::{BuyApi, Context, ErrorKind, Swap, SwapApi};
 use crate::NodeClient;
 use chrono::{Local, TimeZone};
 use failure::_core::marker::PhantomData;
-use grin_core::core::verifier_cache::LruVerifierCache;
-use grin_core::core::Weighting;
-use grin_keychain::Keychain;
-use grin_util::RwLock;
+use mimble_core::core::verifier_cache::LruVerifierCache;
+use mimble_core::core::Weighting;
+use mimble_keychain::Keychain;
+use mimble_util::RwLock;
 use std::sync::Arc;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////

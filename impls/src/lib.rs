@@ -26,15 +26,15 @@ extern crate log;
 extern crate serde_json;
 #[macro_use]
 extern crate lazy_static;
-use grin_wallet_libwallet as libwallet;
-use grin_wallet_util::grin_api as api;
-use grin_wallet_util::grin_chain as chain;
-use grin_wallet_util::grin_core as core;
-pub use grin_wallet_util::grin_keychain as keychain;
-use grin_wallet_util::grin_store as store;
-use grin_wallet_util::grin_util as util;
+use mimble_wallet_libwallet as libwallet;
+use mimble_wallet_util::mimble_api as api;
+use mimble_wallet_util::mimble_chain as chain;
+use mimble_wallet_util::mimble_core as core;
+pub use mimble_wallet_util::mimble_keychain as keychain;
+use mimble_wallet_util::mimble_store as store;
+use mimble_wallet_util::mimble_util as util;
 
-use grin_wallet_config as config;
+use mimble_wallet_config as config;
 
 pub mod adapters;
 mod backends;

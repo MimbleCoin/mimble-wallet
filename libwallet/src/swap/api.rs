@@ -21,9 +21,9 @@ use crate::swap::fsm::machine::StateMachine;
 use crate::swap::message::SecondaryUpdate;
 use crate::swap::types::SwapTransactionsConfirmations;
 use crate::NodeClient;
-use grin_core::global;
-use grin_keychain::Identifier;
-use grin_util::Mutex;
+use mimble_core::global;
+use mimble_keychain::Identifier;
+use mimble_util::Mutex;
 use std::sync::Arc;
 
 /// Swap API trait that is used by both Buyer and Seller.

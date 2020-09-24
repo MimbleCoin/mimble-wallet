@@ -17,19 +17,19 @@
 
 use crate::blake2::blake2b::blake2b;
 use crate::error::{Error, ErrorKind};
-use crate::grin_core::core::amount_to_hr_string;
-use crate::grin_core::core::committed::Committed;
-use crate::grin_core::core::transaction::{
+use crate::mimble_core::core::amount_to_hr_string;
+use crate::mimble_core::core::committed::Committed;
+use crate::mimble_core::core::transaction::{
 	Input, KernelFeatures, Output, Transaction, TransactionBody, TxKernel, Weighting,
 };
-use crate::grin_core::core::verifier_cache::LruVerifierCache;
-use crate::grin_core::libtx::{aggsig, build, proof::ProofBuild, secp_ser, tx_fee};
-use crate::grin_core::map_vec;
-use crate::grin_keychain::{BlindSum, BlindingFactor, Keychain};
-use crate::grin_util::secp::key::{PublicKey, SecretKey};
-use crate::grin_util::secp::pedersen::Commitment;
-use crate::grin_util::secp::Signature;
-use crate::grin_util::{self, secp, RwLock};
+use crate::mimble_core::core::verifier_cache::LruVerifierCache;
+use crate::mimble_core::libtx::{aggsig, build, proof::ProofBuild, secp_ser, tx_fee};
+use crate::mimble_core::map_vec;
+use crate::mimble_keychain::{BlindSum, BlindingFactor, Keychain};
+use crate::mimble_util::secp::key::{PublicKey, SecretKey};
+use crate::mimble_util::secp::pedersen::Commitment;
+use crate::mimble_util::secp::Signature;
+use crate::mimble_util::{self, secp, RwLock};
 use rand::rngs::mock::StepRng;
 use rand::thread_rng;
 use serde::ser::{Serialize, Serializer};
@@ -46,7 +46,7 @@ use crate::slate_versions::v3::{
 	TransactionV3, TxKernelV3, VersionCompatInfoV3,
 };
 
-// use crate::slate_versions::{CURRENT_SLATE_VERSION, GRIN_BLOCK_HEADER_VERSION};
+// use crate::slate_versions::{CURRENT_SLATE_VERSION, mimble_BLOCK_HEADER_VERSION};
 use crate::proof::proofaddress;
 use crate::proof::proofaddress::ProvableAddress;
 use crate::types::CbData;
@@ -144,12 +144,12 @@ impl fmt::Display for ParticipantMessageData {
 			writeln!(f, "(Recipient)")?;
 		}
 		writeln!(f, "---------------------")?;
-		let static_secp = grin_util::static_secp_instance();
+		let static_secp = mimble_util::static_secp_instance();
 		let static_secp = static_secp.lock();
 		writeln!(
 			f,
 			"Public Key: {}",
-			&grin_util::to_hex(self.public_key.serialize_vec(&static_secp, true).to_vec())
+			&mimble_util::to_hex(self.public_key.serialize_vec(&static_secp, true).to_vec())
 		)?;
 		let message = match self.message.clone() {
 			None => "None".to_owned(),
@@ -158,7 +158,7 @@ impl fmt::Display for ParticipantMessageData {
 		writeln!(f, "Message: {}", message)?;
 		let message_sig = match self.message_sig {
 			None => "None".to_owned(),
-			Some(m) => grin_util::to_hex(m.to_raw_data().to_vec()),
+			Some(m) => mimble_util::to_hex(m.to_raw_data().to_vec()),
 		};
 		writeln!(f, "Message Signature: {}", message_sig)
 	}
@@ -292,7 +292,7 @@ impl Slate {
 			version_info: VersionCompatInfo {
 				version: CURRENT_SLATE_VERSION,
 				orig_version: CURRENT_SLATE_VERSION,
-				block_header_version: 1, // GRIN_BLOCK_HEADER_VERSION,
+				block_header_version: 1, // mimble_BLOCK_HEADER_VERSION,
 			},
 			payment_proof: None,
 		}

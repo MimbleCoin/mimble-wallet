@@ -14,11 +14,11 @@
 //! tests differing accounts in the same wallet
 #[macro_use]
 extern crate log;
-extern crate grin_wallet_controller as wallet;
-extern crate grin_wallet_impls as impls;
-extern crate grin_wallet_util;
+extern crate mimble_wallet_controller as wallet;
+extern crate mimble_wallet_impls as impls;
+extern crate mimble_wallet_util;
 
-use grin_wallet_libwallet as libwallet;
+use mimble_wallet_libwallet as libwallet;
 use impls::test_framework::{self, LocalWalletClient};
 use libwallet::{InitTxArgs, Slate};
 use std::thread;
@@ -27,7 +27,7 @@ use std::time::Duration;
 #[macro_use]
 mod common;
 use common::{clean_output_dir, create_wallet_proxy, setup};
-use grin_wallet_libwallet::proof::proofaddress::ProvableAddress;
+use mimble_wallet_libwallet::proof::proofaddress::ProvableAddress;
 
 /// Various tests on accounts within the same wallet
 fn payment_proofs_test_impl(test_dir: &'static str) -> Result<(), wallet::Error> {

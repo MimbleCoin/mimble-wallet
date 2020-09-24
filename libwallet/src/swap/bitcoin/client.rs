@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use crate::grin_util::Mutex;
+use crate::mimble_util::Mutex;
 use crate::swap::ErrorKind;
 use bitcoin::consensus::Decodable;
 use bitcoin::{Address, OutPoint, Transaction};

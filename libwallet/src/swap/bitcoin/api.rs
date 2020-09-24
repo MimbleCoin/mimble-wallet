@@ -14,8 +14,8 @@
 
 use super::client::BtcNodeClient;
 use super::types::{BtcBuyerContext, BtcData, BtcSellerContext};
-use crate::grin_util::secp::pedersen;
-use crate::grin_util::Mutex;
+use crate::mimble_util::secp::pedersen;
+use crate::mimble_util::Mutex;
 use crate::swap::bitcoin::types::BtcTtansaction;
 use crate::swap::bitcoin::Output;
 use crate::swap::fsm::machine::StateMachine;
@@ -30,9 +30,9 @@ use crate::{NodeClient, Slate};
 use bitcoin::{Address, Script};
 use bitcoin_hashes::sha256d;
 use failure::_core::marker::PhantomData;
-use grin_keychain::{Identifier, Keychain, SwitchCommitmentType};
-use grin_util::secp;
-use grin_util::secp::aggsig::export_secnonce_single as generate_nonce;
+use mimble_keychain::{Identifier, Keychain, SwitchCommitmentType};
+use mimble_util::secp;
+use mimble_util::secp::aggsig::export_secnonce_single as generate_nonce;
 use std::str::FromStr;
 use std::sync::Arc;
 

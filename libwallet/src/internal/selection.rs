@@ -15,20 +15,20 @@
 //! Selection of inputs for building transactions
 
 use crate::error::{Error, ErrorKind};
-use crate::grin_core::core::amount_to_hr_string;
-use crate::grin_core::libtx::{
+use crate::mimble_core::core::amount_to_hr_string;
+use crate::mimble_core::libtx::{
 	build,
 	proof::{ProofBuild, ProofBuilder},
 	tx_fee,
 };
-use crate::grin_keychain::{Identifier, Keychain};
-use crate::grin_util::secp::key::SecretKey;
-use crate::grin_util::secp::pedersen::Commitment;
+use crate::mimble_keychain::{Identifier, Keychain};
+use crate::mimble_util::secp::key::SecretKey;
+use crate::mimble_util::secp::pedersen::Commitment;
 use crate::internal::keys;
 use crate::proof::proofaddress;
 use crate::slate::Slate;
 use crate::types::*;
-use grin_wallet_util::grin_util as util;
+use mimble_wallet_util::mimble_util as util;
 use std::collections::HashMap;
 
 /// Initialize a transaction on the sender side, returns a corresponding

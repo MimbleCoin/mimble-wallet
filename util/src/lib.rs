@@ -27,9 +27,9 @@ mod ov3;
 pub use ov3::OnionV3Address;
 pub use ov3::OnionV3Error as OnionV3AddressError;
 
-pub use grin_api;
-pub use grin_chain;
-pub use grin_core;
-pub use grin_keychain;
-pub use grin_store;
-pub use grin_util;
+pub use mimble_api;
+pub use mimble_chain;
+pub use mimble_core;
+pub use mimble_keychain;
+pub use mimble_store;
+pub use mimble_util;

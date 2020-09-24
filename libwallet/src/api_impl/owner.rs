@@ -16,14 +16,14 @@
 
 use uuid::Uuid;
 
-use crate::grin_core::core::hash::Hashed;
-use crate::grin_core::core::Transaction;
-use crate::grin_util::secp::key::SecretKey;
-use crate::grin_util::Mutex;
+use crate::mimble_core::core::hash::Hashed;
+use crate::mimble_core::core::Transaction;
+use crate::mimble_util::secp::key::SecretKey;
+use crate::mimble_util::Mutex;
 
 use crate::api_impl::owner_updater::StatusMessage;
-use crate::grin_keychain::{Identifier, Keychain};
-use crate::grin_util::secp::key::PublicKey;
+use crate::mimble_keychain::{Identifier, Keychain};
+use crate::mimble_util::secp::key::PublicKey;
 
 use crate::internal::{keys, scan, selection, tx, updater};
 use crate::slate::{PaymentInfo, Slate};

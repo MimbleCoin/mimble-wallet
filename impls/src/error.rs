@@ -18,7 +18,7 @@ use crate::keychain;
 use crate::libwallet;
 use crate::util::secp;
 use failure::{Backtrace, Context, Fail};
-use grin_wallet_util::OnionV3AddressError;
+use mimble_wallet_util::OnionV3AddressError;
 use std::env;
 use std::fmt::{self, Display};
 

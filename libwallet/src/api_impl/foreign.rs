@@ -15,9 +15,9 @@
 //! Generic implementation of owner API functions
 use crate::api_impl::owner::check_ttl;
 use crate::api_impl::owner_swap;
-use crate::grin_keychain::Keychain;
-use crate::grin_util::secp::key::SecretKey;
-use crate::grin_util::Mutex;
+use crate::mimble_keychain::Keychain;
+use crate::mimble_util::secp::key::SecretKey;
+use crate::mimble_util::Mutex;
 use crate::internal::{tx, updater};
 use crate::proof::proofaddress::ProvableAddress;
 use crate::slate_versions::SlateVersion;
@@ -25,8 +25,8 @@ use crate::{
 	address, BlockFees, CbData, Error, ErrorKind, NodeClient, Slate, TxLogEntryType, VersionInfo,
 	WalletBackend, WalletInst, WalletLCProvider,
 };
-use grin_core::core::amount_to_hr_string;
-use grin_wallet_util::OnionV3Address;
+use mimble_core::core::amount_to_hr_string;
+use mimble_wallet_util::OnionV3Address;
 use std::sync::Arc;
 use std::sync::RwLock;
 use strum::IntoEnumIterator;

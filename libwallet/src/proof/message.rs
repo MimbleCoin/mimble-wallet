@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use crate::grin_util as util;
-use crate::grin_util::secp::key::{PublicKey, SecretKey};
-use crate::grin_util::secp::Secp256k1;
+use crate::mimble_util as util;
+use crate::mimble_util::secp::key::{PublicKey, SecretKey};
+use crate::mimble_util::secp::Secp256k1;
 use rand::{thread_rng, Rng};
 
 use super::proofaddress;

@@ -17,21 +17,21 @@
 #[macro_use]
 extern crate clap;
 
-extern crate grin_wallet_util;
+extern crate mimble_wallet_util;
 #[macro_use]
 extern crate log;
 use crate::config::ConfigError;
 use crate::core::global;
 use crate::util::init_logger;
 use clap::App;
-use grin_wallet_config as config;
-use grin_wallet_impls::HTTPNodeClient;
-use grin_wallet_util::grin_core as core;
-use grin_wallet_util::grin_util as util;
+use mimble_wallet_config as config;
+use mimble_wallet_impls::HTTPNodeClient;
+use mimble_wallet_util::mimble_core as core;
+use mimble_wallet_util::mimble_util as util;
 use std::env;
 use std::path::PathBuf;
 
-use mwc_wallet::cmd;
+use mimble_wallet::cmd;
 
 // include build information
 pub mod built_info {
@@ -41,7 +41,7 @@ pub mod built_info {
 pub fn info_strings() -> (String, String) {
 	(
 		format!(
-			"This is MWC Wallet version {}{}, built for {} by {}.",
+			"This is Mimble Wallet version {}{}, built for {} by {}.",
 			built_info::PKG_VERSION,
 			built_info::GIT_VERSION.map_or_else(|| "".to_owned(), |v| format!(" (git {})", v)),
 			built_info::TARGET,
@@ -69,7 +69,7 @@ fn main() {
 }
 
 fn real_main() -> i32 {
-	let yml = load_yaml!("mwc-wallet.yml");
+	let yml = load_yaml!("mimble-wallet.yml");
 	let args = App::from_yaml(yml)
 		.version(built_info::PKG_VERSION)
 		.get_matches();
@@ -117,11 +117,11 @@ fn real_main() -> i32 {
 		Ok(c) => c,
 		Err(e) => match e {
 			ConfigError::PathNotFoundError(m) => {
-				println!("Wallet configuration not found at {}. (Run `mwc-wallet init` to create a new wallet)", m);
+				println!("Wallet configuration not found at {}. (Run `mimble-wallet init` to create a new wallet)", m);
 				return 0;
 			}
 			m => {
-				println!("Unable to load wallet configuration: {} (Run `mwc-wallet init` to create a new wallet)", m);
+				println!("Unable to load wallet configuration: {} (Run `mimble-wallet init` to create a new wallet)", m);
 				return 0;
 			}
 		},
@@ -158,7 +158,7 @@ fn real_main() -> i32 {
 
 	let wallet_config = config.clone().members.unwrap().wallet;
 	let node_client = HTTPNodeClient::new(&wallet_config.check_node_api_http_addr, None)
-		.expect("Unable create HTTP client for mwc-node connection");
+		.expect("Unable create HTTP client for mimble-node connection");
 
 	cmd::wallet_command(&args, config, node_client)
 }

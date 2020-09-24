@@ -12,13 +12,13 @@
 // limitations under the License.
 
 //! common functions for tests (instantiating wallet and proxy, mostly)
-extern crate grin_wallet_controller as wallet;
-extern crate grin_wallet_impls as impls;
-extern crate grin_wallet_libwallet as libwallet;
+extern crate mimble_wallet_controller as wallet;
+extern crate mimble_wallet_impls as impls;
+extern crate mimble_wallet_libwallet as libwallet;
 
-use grin_wallet_util::grin_core as core;
-use grin_wallet_util::grin_keychain as keychain;
-use grin_wallet_util::grin_util as util;
+use mimble_wallet_util::mimble_core as core;
+use mimble_wallet_util::mimble_keychain as keychain;
+use mimble_wallet_util::mimble_util as util;
 
 use self::core::global;
 use self::core::global::ChainTypes;

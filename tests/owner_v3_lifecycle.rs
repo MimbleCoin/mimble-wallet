@@ -17,21 +17,21 @@ extern crate clap;
 #[macro_use]
 extern crate log;
 
-extern crate mwc_wallet;
+extern crate mimble_wallet;
 
-use grin_wallet_api::{ECDHPubkey, JsonId};
-use grin_wallet_impls::test_framework::{self, LocalWalletClient, WalletProxy};
+use mimble_wallet_api::{ECDHPubkey, JsonId};
+use mimble_wallet_impls::test_framework::{self, LocalWalletClient, WalletProxy};
 
 use clap::App;
 use std::thread;
 use std::time::Duration;
 
-use grin_wallet_impls::DefaultLCProvider;
-use grin_wallet_libwallet::{InitTxArgs, Slate, SlateVersion, VersionedSlate};
-use grin_wallet_util::grin_keychain::ExtKeychain;
+use mimble_wallet_impls::DefaultLCProvider;
+use mimble_wallet_libwallet::{InitTxArgs, Slate, SlateVersion, VersionedSlate};
+use mimble_wallet_util::mimble_keychain::ExtKeychain;
 use serde_json;
 
-use grin_wallet_util::grin_util::Mutex;
+use mimble_wallet_util::mimble_util::Mutex;
 use std::path::PathBuf;
 use std::sync::Arc;
 
@@ -44,11 +44,11 @@ use common::{
 };
 
 #[test]
-fn owner_v3_lifecycle() -> Result<(), grin_wallet_controller::Error> {
+fn owner_v3_lifecycle() -> Result<(), mimble_wallet_controller::Error> {
 	let test_dir = "target/test_output/owner_v3_lifecycle";
 	setup(test_dir);
 
-	let yml = load_yaml!("../src/bin/mwc-wallet.yml");
+	let yml = load_yaml!("../src/bin/mimble-wallet.yml");
 	let app = App::from_yaml(yml);
 
 	// Create a new proxy to simulate server and wallet responses
@@ -68,7 +68,7 @@ fn owner_v3_lifecycle() -> Result<(), grin_wallet_controller::Error> {
 		// Create wallet 2 manually, which will mine a bit and insert some
 		// grins into the equation
 		let client2 = LocalWalletClient::new("wallet2", wallet_proxy.tx.clone());
-		let arg_vec = vec!["mwc-wallet", "-p", "password", "init", "-h"];
+		let arg_vec = vec!["mimble-wallet", "-p", "password", "init", "-h"];
 		execute_command(&app, test_dir, "wallet2", &client2, arg_vec.clone())?;
 
 		let config2 = initial_setup_wallet(test_dir, "wallet2");
@@ -88,14 +88,14 @@ fn owner_v3_lifecycle() -> Result<(), grin_wallet_controller::Error> {
 		);
 
 		// start up the owner api with wallet created
-		let arg_vec = vec!["mwc-wallet", "owner_api", "-l", "43420", "--run_foreign"];
+		let arg_vec = vec!["mimble-wallet", "owner_api", "-l", "43420", "--run_foreign"];
 		// should create new wallet file
 		let client1 = LocalWalletClient::new("wallet1", wallet_proxy.tx.clone());
 
 		let p = wallet_proxy_a.clone();
 
 		thread::spawn(move || {
-			let yml = load_yaml!("../src/bin/mwc-wallet.yml");
+			let yml = load_yaml!("../src/bin/mimble-wallet.yml");
 			let app = App::from_yaml(yml);
 			execute_command_no_setup(
 				&app,
@@ -188,7 +188,7 @@ fn owner_v3_lifecycle() -> Result<(), grin_wallet_controller::Error> {
 	)?;
 	println!("RES 4: {:?}", res);
 	assert!(res.is_ok());
-	let pb = PathBuf::from(format!("{}/wallet1/mwc-wallet.toml", test_dir));
+	let pb = PathBuf::from(format!("{}/wallet1/mimble-wallet.toml", test_dir));
 	assert!(pb.exists());
 
 	// 5) Try and perform an operation without having a wallet open
@@ -379,7 +379,7 @@ fn owner_v3_lifecycle() -> Result<(), grin_wallet_controller::Error> {
 	let mut slate: Slate = res.unwrap().into();
 
 	// give this slate over to wallet 2 manually
-	grin_wallet_controller::controller::owner_single_use(
+	mimble_wallet_controller::controller::owner_single_use(
 		Some(wallet2.clone()),
 		mask2,
 		None,

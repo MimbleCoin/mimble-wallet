@@ -23,11 +23,11 @@ use super::{ErrorKind, Keychain, CURRENT_VERSION};
 use crate::swap::fsm::state::StateId;
 use crate::{ParticipantData as TxParticipant, Slate, SlateVersion, VersionedSlate};
 use chrono::{DateTime, NaiveDateTime, Utc};
-use grin_core::libtx::{build, proof, tx_fee};
-use grin_keychain::{BlindSum, BlindingFactor};
-use grin_util::secp::aggsig;
-use grin_util::secp::key::{PublicKey, SecretKey};
-use grin_util::secp::pedersen::{Commitment, RangeProof};
+use mimble_core::libtx::{build, proof, tx_fee};
+use mimble_keychain::{BlindSum, BlindingFactor};
+use mimble_util::secp::aggsig;
+use mimble_util::secp::key::{PublicKey, SecretKey};
+use mimble_util::secp::pedersen::{Commitment, RangeProof};
 use rand::thread_rng;
 
 #[cfg(test)]

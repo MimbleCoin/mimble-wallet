@@ -35,8 +35,8 @@ use crate::util::secp::key::SecretKey;
 use crate::util::secp::pedersen;
 use crate::util::secp::pedersen::Commitment;
 use crate::util::{Mutex, RwLock};
-use grin_core::core::hash::Hashed;
-use grin_core::core::BlockHeader;
+use mimble_core::core::hash::Hashed;
+use mimble_core::core::BlockHeader;
 use serde_json;
 use std::collections::HashMap;
 use std::sync::atomic::{AtomicBool, Ordering};
@@ -567,7 +567,7 @@ impl NodeClient for LocalWalletClient {
 	/// Return Connected peers
 	fn get_connected_peer_info(
 		&self,
-	) -> Result<Vec<grin_p2p::types::PeerInfoDisplayLegacy>, libwallet::Error> {
+	) -> Result<Vec<mimble_p2p::types::PeerInfoDisplayLegacy>, libwallet::Error> {
 		trace!("get_connected_peer_info called at the test client. Skipped.");
 		return Ok(Vec::new());
 	}

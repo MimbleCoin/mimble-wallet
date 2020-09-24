@@ -18,13 +18,13 @@ use crate::util::Mutex;
 use clap::App;
 //use colored::Colorize;
 use crate::cmd::wallet_args::get_supported_secondary_currency_node_addrs;
-use grin_wallet_api::Owner;
-use grin_wallet_config::{MQSConfig, TorConfig, WalletConfig};
-use grin_wallet_controller::command::GlobalArgs;
-use grin_wallet_controller::Error;
-use grin_wallet_impls::DefaultWalletImpl;
-use grin_wallet_libwallet::{NodeClient, WalletInst, WalletLCProvider};
-use grin_wallet_util::grin_keychain as keychain;
+use mimble_wallet_api::Owner;
+use mimble_wallet_config::{MQSConfig, TorConfig, WalletConfig};
+use mimble_wallet_controller::command::GlobalArgs;
+use mimble_wallet_controller::Error;
+use mimble_wallet_impls::DefaultWalletImpl;
+use mimble_wallet_libwallet::{NodeClient, WalletInst, WalletLCProvider};
+use mimble_wallet_util::mimble_keychain as keychain;
 use rustyline::completion::{Completer, FilenameCompleter, Pair};
 use rustyline::error::ReadlineError;
 use rustyline::highlight::{Highlighter, MatchingBracketHighlighter};
@@ -186,7 +186,7 @@ where
 
 								let secondary_currency_node_addrs =
 									get_supported_secondary_currency_node_addrs(wallet_config);
-								grin_wallet_libwallet::swap::trades::init_swap_trade_backend(
+								mimble_wallet_libwallet::swap::trades::init_swap_trade_backend(
 									wallet_inst.get_data_file_dir(),
 									secondary_currency_node_addrs,
 								);

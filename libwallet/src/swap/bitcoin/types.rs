@@ -27,9 +27,9 @@ use bitcoin::OutPoint;
 use bitcoin::{Address, Script, Transaction, TxIn, TxOut, VarInt};
 use bitcoin_hashes::sha256d;
 use byteorder::{ByteOrder, LittleEndian};
-use grin_keychain::{Identifier, SwitchCommitmentType};
-use grin_util::secp::key::{PublicKey, SecretKey};
-use grin_util::secp::{Message, Secp256k1, Signature};
+use mimble_keychain::{Identifier, SwitchCommitmentType};
+use mimble_util::secp::key::{PublicKey, SecretKey};
+use mimble_util::secp::{Message, Secp256k1, Signature};
 use std::io::Cursor;
 use std::ops::Deref;
 
@@ -472,9 +472,9 @@ mod tests {
 	use bitcoin::util::address::Payload;
 	use bitcoin::util::key::PublicKey as BTCPublicKey;
 	use bitcoin_hashes::{hash160, Hash};
-	use grin_util::from_hex;
-	use grin_util::secp::key::PublicKey;
-	use grin_util::secp::{ContextFlag, Secp256k1};
+	use mimble_util::from_hex;
+	use mimble_util::secp::key::PublicKey;
+	use mimble_util::secp::{ContextFlag, Secp256k1};
 	use rand::{thread_rng, Rng, RngCore};
 	use std::collections::HashMap;
 

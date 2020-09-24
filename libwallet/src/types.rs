@@ -17,16 +17,16 @@
 
 use crate::config::{MQSConfig, TorConfig, WalletConfig};
 use crate::error::{Error, ErrorKind};
-use crate::grin_core::core::hash::Hash;
-use crate::grin_core::core::{Output, Transaction, TxKernel};
-use crate::grin_core::libtx::{aggsig, secp_ser};
-use crate::grin_core::{global, ser};
-use crate::grin_keychain::{Identifier, Keychain};
-use crate::grin_util::logger::LoggingConfig;
-use crate::grin_util::secp::key::{PublicKey, SecretKey, ZERO_KEY};
-use crate::grin_util::secp::pedersen::Commitment;
-use crate::grin_util::secp::{self, pedersen, Secp256k1};
-use crate::grin_util::ZeroingString;
+use crate::mimble_core::core::hash::Hash;
+use crate::mimble_core::core::{Output, Transaction, TxKernel};
+use crate::mimble_core::libtx::{aggsig, secp_ser};
+use crate::mimble_core::{global, ser};
+use crate::mimble_keychain::{Identifier, Keychain};
+use crate::mimble_util::logger::LoggingConfig;
+use crate::mimble_util::secp::key::{PublicKey, SecretKey, ZERO_KEY};
+use crate::mimble_util::secp::pedersen::Commitment;
+use crate::mimble_util::secp::{self, pedersen, Secp256k1};
+use crate::mimble_util::ZeroingString;
 use crate::proof::proofaddress::ProvableAddress;
 use crate::slate::ParticipantMessages;
 use crate::Slate;
@@ -371,7 +371,7 @@ pub trait NodeClient: Send + Sync + Clone {
 
 	/// Return Connected peers
 	fn get_connected_peer_info(&self)
-		-> Result<Vec<grin_p2p::types::PeerInfoDisplayLegacy>, Error>;
+		-> Result<Vec<mimble_p2p::types::PeerInfoDisplayLegacy>, Error>;
 
 	/// Get a kernel and the height of the block it's included in. Returns
 	/// (tx_kernel, height, mmr_index)
@@ -426,7 +426,7 @@ pub trait NodeClient: Send + Sync + Clone {
 		start_height: u64,
 		end_height: u64,
 		threads_number: usize,
-	) -> Result<Vec<grin_api::BlockPrintable>, Error>;
+	) -> Result<Vec<mimble_api::BlockPrintable>, Error>;
 }
 
 /// Node version info

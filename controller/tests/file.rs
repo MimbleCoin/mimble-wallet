@@ -14,17 +14,17 @@
 //! Test a wallet file send/recieve
 #[macro_use]
 extern crate log;
-extern crate grin_wallet_controller as wallet;
-extern crate grin_wallet_impls as impls;
+extern crate mimble_wallet_controller as wallet;
+extern crate mimble_wallet_impls as impls;
 
-use grin_wallet_util::grin_core as core;
+use mimble_wallet_util::mimble_core as core;
 
 use impls::test_framework::{self, LocalWalletClient};
 use impls::{PathToSlate, SlateGetter as _, SlatePutter as _};
 use std::thread;
 use std::time::Duration;
 
-use grin_wallet_libwallet::InitTxArgs;
+use mimble_wallet_libwallet::InitTxArgs;
 
 use serde_json;
 

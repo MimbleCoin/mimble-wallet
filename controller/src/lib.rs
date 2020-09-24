@@ -25,14 +25,14 @@ extern crate log;
 #[macro_use]
 extern crate lazy_static;
 use failure;
-use grin_wallet_api as apiwallet;
-use grin_wallet_config as config;
-use grin_wallet_impls as impls;
-use grin_wallet_libwallet as libwallet;
-use grin_wallet_util::grin_api as api;
-use grin_wallet_util::grin_core as core;
-use grin_wallet_util::grin_keychain as keychain;
-use grin_wallet_util::grin_util as util;
+use mimble_wallet_api as apiwallet;
+use mimble_wallet_config as config;
+use mimble_wallet_impls as impls;
+use mimble_wallet_libwallet as libwallet;
+use mimble_wallet_util::mimble_api as api;
+use mimble_wallet_util::mimble_core as core;
+use mimble_wallet_util::mimble_keychain as keychain;
+use mimble_wallet_util::mimble_util as util;
 
 pub mod command;
 pub mod controller;

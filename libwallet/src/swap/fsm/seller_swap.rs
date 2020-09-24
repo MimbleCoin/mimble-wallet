@@ -25,7 +25,7 @@ use crate::swap::{swap, Context, ErrorKind, SellApi, Swap, SwapApi};
 use crate::NodeClient;
 use chrono::{Local, TimeZone};
 use failure::_core::marker::PhantomData;
-use grin_keychain::Keychain;
+use mimble_keychain::Keychain;
 use std::sync::Arc;
 
 /// State SellerOfferCreated

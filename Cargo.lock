@@ -1111,158 +1111,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9b919933a397b79c37e33b77bb2aa3dc8eb6e165ad809e58ff75bc7db2e34574"
 
 [[package]]
-name = "grin_api"
-version = "3.2.4-beta.1"
-source = "git+https://github.com/mwcproject/mwc-node#77faf2283c9933be779e4a3ce524200b2384f04c"
-dependencies = [
- "bytes 0.5.6",
- "easy-jsonrpc-mw",
- "failure",
- "failure_derive",
- "futures 0.3.5",
- "grin_chain",
- "grin_core",
- "grin_p2p",
- "grin_pool",
- "grin_store",
- "grin_util",
- "http 0.1.21",
- "hyper 0.13.7",
- "hyper-rustls 0.19.1",
- "hyper-rustls 0.20.0",
- "hyper-timeout",
- "lazy_static",
- "log",
- "regex",
- "ring",
- "rustls 0.16.0",
- "serde",
- "serde_derive",
- "serde_json",
- "tokio 0.2.22",
- "tokio-rustls 0.12.3",
- "url 1.7.2",
-]
-
-[[package]]
-name = "grin_chain"
-version = "3.2.4-beta.1"
-source = "git+https://github.com/mwcproject/mwc-node#77faf2283c9933be779e4a3ce524200b2384f04c"
-dependencies = [
- "bit-vec",
- "bitflags 1.2.1",
- "byteorder",
- "chrono",
- "croaring-mw",
- "failure",
- "failure_derive",
- "grin_core",
- "grin_keychain",
- "grin_store",
- "grin_util",
- "lazy_static",
- "log",
- "lru-cache",
- "serde",
- "serde_derive",
-]
-
-[[package]]
-name = "grin_core"
-version = "3.2.4-beta.1"
-source = "git+https://github.com/mwcproject/mwc-node#77faf2283c9933be779e4a3ce524200b2384f04c"
-dependencies = [
- "blake2-rfc",
- "byteorder",
- "chrono",
- "croaring-mw",
- "enum_primitive",
- "failure",
- "failure_derive",
- "grin_keychain",
- "grin_util",
- "lazy_static",
- "log",
- "lru-cache",
- "num",
- "num-bigint",
- "rand 0.6.5",
- "serde",
- "serde_derive",
- "siphasher 0.2.3",
- "zeroize 0.9.3",
-]
-
-[[package]]
-name = "grin_keychain"
-version = "3.2.4-beta.1"
-source = "git+https://github.com/mwcproject/mwc-node#77faf2283c9933be779e4a3ce524200b2384f04c"
-dependencies = [
- "blake2-rfc",
- "byteorder",
- "digest 0.7.6",
- "failure",
- "failure_derive",
- "grin_util",
- "hmac",
- "lazy_static",
- "log",
- "pbkdf2",
- "rand 0.6.5",
- "ripemd160",
- "serde",
- "serde_derive",
- "serde_json",
- "sha2 0.7.1",
- "zeroize 0.9.3",
-]
-
-[[package]]
-name = "grin_p2p"
-version = "3.2.4-beta.1"
-source = "git+https://github.com/mwcproject/mwc-node#77faf2283c9933be779e4a3ce524200b2384f04c"
-dependencies = [
- "bitflags 1.2.1",
- "chrono",
- "enum_primitive",
- "failure",
- "failure_derive",
- "grin_chain",
- "grin_core",
- "grin_store",
- "grin_util",
- "log",
- "lru-cache",
- "net2",
- "num",
- "rand 0.6.5",
- "serde",
- "serde_derive",
- "socks",
- "tempfile",
- "tor-stream",
-]
-
-[[package]]
-name = "grin_pool"
-version = "3.2.4-beta.1"
-source = "git+https://github.com/mwcproject/mwc-node#77faf2283c9933be779e4a3ce524200b2384f04c"
-dependencies = [
- "blake2-rfc",
- "chrono",
- "env_logger 0.5.13",
- "failure",
- "failure_derive",
- "grin_core",
- "grin_keychain",
- "grin_util",
- "log",
- "rand 0.6.5",
- "serde",
- "serde_derive",
-]
-
-[[package]]
 name = "grin_secp256k1zkp"
 version = "0.7.7"
 source = "git+https://github.com/mwcproject/rust-secp256k1-zkp#8b7870c925857d015a4323aec0204d2efca7286a"
@@ -1275,231 +1123,6 @@ dependencies = [
  "serde",
  "serde_json",
  "zeroize 0.10.1",
-]
-
-[[package]]
-name = "grin_store"
-version = "3.2.4-beta.1"
-source = "git+https://github.com/mwcproject/mwc-node#77faf2283c9933be779e4a3ce524200b2384f04c"
-dependencies = [
- "byteorder",
- "croaring-mw",
- "failure",
- "failure_derive",
- "grin_core",
- "grin_util",
- "libc",
- "lmdb-zero",
- "log",
- "memmap",
- "serde",
- "serde_derive",
- "tempfile",
-]
-
-[[package]]
-name = "grin_util"
-version = "3.2.4-beta.1"
-source = "git+https://github.com/mwcproject/mwc-node#77faf2283c9933be779e4a3ce524200b2384f04c"
-dependencies = [
- "backtrace",
- "base64 0.9.3",
- "byteorder",
- "data-encoding",
- "ed25519-dalek",
- "failure",
- "failure_derive",
- "grin_secp256k1zkp",
- "lazy_static",
- "log",
- "log4rs",
- "parking_lot 0.6.4",
- "rand 0.6.5",
- "serde",
- "serde_derive",
- "sha3",
- "walkdir",
- "zeroize 0.9.3",
- "zip",
-]
-
-[[package]]
-name = "grin_wallet_api"
-version = "3.2.2"
-dependencies = [
- "base64 0.9.3",
- "chrono",
- "colored",
- "easy-jsonrpc-mw",
- "ed25519-dalek",
- "failure",
- "failure_derive",
- "grin_wallet_config",
- "grin_wallet_impls",
- "grin_wallet_libwallet",
- "grin_wallet_util",
- "log",
- "rand 0.6.5",
- "ring",
- "serde",
- "serde_derive",
- "serde_json",
- "tempfile",
- "uuid",
-]
-
-[[package]]
-name = "grin_wallet_config"
-version = "3.2.2"
-dependencies = [
- "dirs 1.0.5",
- "failure",
- "failure_derive",
- "grin_wallet_util",
- "pretty_assertions",
- "rand 0.5.6",
- "serde",
- "serde_derive",
- "toml 0.4.10",
-]
-
-[[package]]
-name = "grin_wallet_controller"
-version = "3.2.2"
-dependencies = [
- "chrono",
- "colored",
- "easy-jsonrpc-mw",
- "failure",
- "failure_derive",
- "futures 0.3.5",
- "grin_wallet_api",
- "grin_wallet_config",
- "grin_wallet_impls",
- "grin_wallet_libwallet",
- "grin_wallet_util",
- "hyper 0.13.7",
- "lazy_static",
- "log",
- "prettytable-rs",
- "rand 0.5.6",
- "ring",
- "serde",
- "serde_derive",
- "serde_json",
- "term",
- "tokio 0.2.22",
- "url 1.7.2",
- "uuid",
-]
-
-[[package]]
-name = "grin_wallet_impls"
-version = "3.2.2"
-dependencies = [
- "bitcoin",
- "blake2-rfc",
- "byteorder",
- "chrono",
- "crossbeam-utils",
- "data-encoding",
- "ed25519-dalek",
- "failure",
- "failure_derive",
- "futures 0.3.5",
- "grin_api",
- "grin_core",
- "grin_keychain",
- "grin_p2p",
- "grin_util",
- "grin_wallet_config",
- "grin_wallet_libwallet",
- "grin_wallet_util",
- "http 0.1.21",
- "hyper 0.13.7",
- "hyper-rustls 0.20.0",
- "hyper-socks2",
- "hyper-timeout",
- "lazy_static",
- "log",
- "nanoid",
- "rand 0.5.6",
- "regex",
- "reqwest",
- "ring",
- "serde",
- "serde_derive",
- "serde_json",
- "sysinfo",
- "timer",
- "tokio 0.2.22",
- "url 1.7.2",
- "uuid",
-]
-
-[[package]]
-name = "grin_wallet_libwallet"
-version = "3.2.2"
-dependencies = [
- "base64 0.9.3",
- "bitcoin",
- "bitcoin_hashes",
- "blake2-rfc",
- "byteorder",
- "chrono",
- "colored",
- "data-encoding",
- "digest 0.7.6",
- "ed25519-dalek",
- "failure",
- "failure_derive",
- "grin_api",
- "grin_core",
- "grin_keychain",
- "grin_p2p",
- "grin_util",
- "grin_wallet_config",
- "grin_wallet_util",
- "hex",
- "hmac",
- "lazy_static",
- "libc",
- "log",
- "rand 0.6.5",
- "regex",
- "ring",
- "ripemd160",
- "serde",
- "serde_derive",
- "serde_json",
- "serial_test",
- "sha2 0.7.1",
- "sha3",
- "signature",
- "strum",
- "strum_macros",
- "uuid",
-]
-
-[[package]]
-name = "grin_wallet_util"
-version = "3.2.2"
-dependencies = [
- "data-encoding",
- "ed25519-dalek",
- "failure",
- "failure_derive",
- "grin_api",
- "grin_chain",
- "grin_core",
- "grin_keychain",
- "grin_store",
- "grin_util",
- "pretty_assertions",
- "rand 0.6.5",
- "serde",
- "serde_derive",
- "sha3",
 ]
 
 [[package]]
@@ -2084,6 +1707,411 @@ dependencies = [
 ]
 
 [[package]]
+name = "mimble_api"
+version = "4.0.0"
+source = "git+https://github.com/MimbleCoin/mimble-node#9f7d44cbf52477c0f8241b97f1e72f940293372b"
+dependencies = [
+ "bytes 0.5.6",
+ "easy-jsonrpc-mw",
+ "failure",
+ "failure_derive",
+ "futures 0.3.5",
+ "http 0.1.21",
+ "hyper 0.13.7",
+ "hyper-rustls 0.19.1",
+ "hyper-rustls 0.20.0",
+ "hyper-timeout",
+ "lazy_static",
+ "log",
+ "mimble_chain",
+ "mimble_core",
+ "mimble_p2p",
+ "mimble_pool",
+ "mimble_store",
+ "mimble_util",
+ "regex",
+ "ring",
+ "rustls 0.16.0",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "tokio 0.2.22",
+ "tokio-rustls 0.12.3",
+ "url 1.7.2",
+]
+
+[[package]]
+name = "mimble_chain"
+version = "4.0.0"
+source = "git+https://github.com/MimbleCoin/mimble-node#9f7d44cbf52477c0f8241b97f1e72f940293372b"
+dependencies = [
+ "bit-vec",
+ "bitflags 1.2.1",
+ "byteorder",
+ "chrono",
+ "croaring-mw",
+ "failure",
+ "failure_derive",
+ "lazy_static",
+ "log",
+ "lru-cache",
+ "mimble_core",
+ "mimble_keychain",
+ "mimble_store",
+ "mimble_util",
+ "serde",
+ "serde_derive",
+]
+
+[[package]]
+name = "mimble_core"
+version = "4.0.0"
+source = "git+https://github.com/MimbleCoin/mimble-node#9f7d44cbf52477c0f8241b97f1e72f940293372b"
+dependencies = [
+ "blake2-rfc",
+ "byteorder",
+ "chrono",
+ "croaring-mw",
+ "enum_primitive",
+ "failure",
+ "failure_derive",
+ "lazy_static",
+ "log",
+ "lru-cache",
+ "mimble_keychain",
+ "mimble_util",
+ "num",
+ "num-bigint",
+ "rand 0.6.5",
+ "serde",
+ "serde_derive",
+ "siphasher 0.2.3",
+ "zeroize 0.9.3",
+]
+
+[[package]]
+name = "mimble_keychain"
+version = "4.0.0"
+source = "git+https://github.com/MimbleCoin/mimble-node#9f7d44cbf52477c0f8241b97f1e72f940293372b"
+dependencies = [
+ "blake2-rfc",
+ "byteorder",
+ "digest 0.7.6",
+ "failure",
+ "failure_derive",
+ "hmac",
+ "lazy_static",
+ "log",
+ "mimble_util",
+ "pbkdf2",
+ "rand 0.6.5",
+ "ripemd160",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "sha2 0.7.1",
+ "zeroize 0.9.3",
+]
+
+[[package]]
+name = "mimble_p2p"
+version = "4.0.0"
+source = "git+https://github.com/MimbleCoin/mimble-node#9f7d44cbf52477c0f8241b97f1e72f940293372b"
+dependencies = [
+ "bitflags 1.2.1",
+ "chrono",
+ "enum_primitive",
+ "failure",
+ "failure_derive",
+ "log",
+ "lru-cache",
+ "mimble_chain",
+ "mimble_core",
+ "mimble_store",
+ "mimble_util",
+ "net2",
+ "num",
+ "rand 0.6.5",
+ "serde",
+ "serde_derive",
+ "socks",
+ "tempfile",
+ "tor-stream",
+]
+
+[[package]]
+name = "mimble_pool"
+version = "4.0.0"
+source = "git+https://github.com/MimbleCoin/mimble-node#9f7d44cbf52477c0f8241b97f1e72f940293372b"
+dependencies = [
+ "blake2-rfc",
+ "chrono",
+ "env_logger 0.5.13",
+ "failure",
+ "failure_derive",
+ "log",
+ "mimble_core",
+ "mimble_keychain",
+ "mimble_util",
+ "rand 0.6.5",
+ "serde",
+ "serde_derive",
+]
+
+[[package]]
+name = "mimble_store"
+version = "4.0.0"
+source = "git+https://github.com/MimbleCoin/mimble-node#9f7d44cbf52477c0f8241b97f1e72f940293372b"
+dependencies = [
+ "byteorder",
+ "croaring-mw",
+ "failure",
+ "failure_derive",
+ "libc",
+ "lmdb-zero",
+ "log",
+ "memmap",
+ "mimble_core",
+ "mimble_util",
+ "serde",
+ "serde_derive",
+ "tempfile",
+]
+
+[[package]]
+name = "mimble_util"
+version = "4.0.0"
+source = "git+https://github.com/MimbleCoin/mimble-node#9f7d44cbf52477c0f8241b97f1e72f940293372b"
+dependencies = [
+ "backtrace",
+ "base64 0.9.3",
+ "byteorder",
+ "data-encoding",
+ "ed25519-dalek",
+ "failure",
+ "failure_derive",
+ "grin_secp256k1zkp",
+ "lazy_static",
+ "log",
+ "log4rs",
+ "parking_lot 0.6.4",
+ "rand 0.6.5",
+ "serde",
+ "serde_derive",
+ "sha3",
+ "walkdir",
+ "zeroize 0.9.3",
+ "zip",
+]
+
+[[package]]
+name = "mimble_wallet"
+version = "3.2.1"
+dependencies = [
+ "built",
+ "clap",
+ "easy-jsonrpc",
+ "failure",
+ "failure_derive",
+ "lazy_static",
+ "linefeed",
+ "log",
+ "mimble_wallet_api",
+ "mimble_wallet_config",
+ "mimble_wallet_controller",
+ "mimble_wallet_impls",
+ "mimble_wallet_libwallet",
+ "mimble_wallet_util",
+ "prettytable-rs",
+ "rpassword",
+ "rustyline",
+ "semver",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "url 1.7.2",
+]
+
+[[package]]
+name = "mimble_wallet_api"
+version = "3.2.2"
+dependencies = [
+ "base64 0.9.3",
+ "chrono",
+ "colored",
+ "easy-jsonrpc-mw",
+ "ed25519-dalek",
+ "failure",
+ "failure_derive",
+ "log",
+ "mimble_wallet_config",
+ "mimble_wallet_impls",
+ "mimble_wallet_libwallet",
+ "mimble_wallet_util",
+ "rand 0.6.5",
+ "ring",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "tempfile",
+ "uuid",
+]
+
+[[package]]
+name = "mimble_wallet_config"
+version = "3.2.2"
+dependencies = [
+ "dirs 1.0.5",
+ "failure",
+ "failure_derive",
+ "mimble_wallet_util",
+ "pretty_assertions",
+ "rand 0.5.6",
+ "serde",
+ "serde_derive",
+ "toml 0.4.10",
+]
+
+[[package]]
+name = "mimble_wallet_controller"
+version = "3.2.2"
+dependencies = [
+ "chrono",
+ "colored",
+ "easy-jsonrpc-mw",
+ "failure",
+ "failure_derive",
+ "futures 0.3.5",
+ "hyper 0.13.7",
+ "lazy_static",
+ "log",
+ "mimble_wallet_api",
+ "mimble_wallet_config",
+ "mimble_wallet_impls",
+ "mimble_wallet_libwallet",
+ "mimble_wallet_util",
+ "prettytable-rs",
+ "rand 0.5.6",
+ "ring",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "term",
+ "tokio 0.2.22",
+ "url 1.7.2",
+ "uuid",
+]
+
+[[package]]
+name = "mimble_wallet_impls"
+version = "3.2.2"
+dependencies = [
+ "bitcoin",
+ "blake2-rfc",
+ "byteorder",
+ "chrono",
+ "crossbeam-utils",
+ "data-encoding",
+ "ed25519-dalek",
+ "failure",
+ "failure_derive",
+ "futures 0.3.5",
+ "http 0.1.21",
+ "hyper 0.13.7",
+ "hyper-rustls 0.20.0",
+ "hyper-socks2",
+ "hyper-timeout",
+ "lazy_static",
+ "log",
+ "mimble_api",
+ "mimble_core",
+ "mimble_keychain",
+ "mimble_p2p",
+ "mimble_util",
+ "mimble_wallet_config",
+ "mimble_wallet_libwallet",
+ "mimble_wallet_util",
+ "nanoid",
+ "rand 0.5.6",
+ "regex",
+ "reqwest",
+ "ring",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "sysinfo",
+ "timer",
+ "tokio 0.2.22",
+ "url 1.7.2",
+ "uuid",
+]
+
+[[package]]
+name = "mimble_wallet_libwallet"
+version = "3.2.2"
+dependencies = [
+ "base64 0.9.3",
+ "bitcoin",
+ "bitcoin_hashes",
+ "blake2-rfc",
+ "byteorder",
+ "chrono",
+ "colored",
+ "data-encoding",
+ "digest 0.7.6",
+ "ed25519-dalek",
+ "failure",
+ "failure_derive",
+ "hex",
+ "hmac",
+ "lazy_static",
+ "libc",
+ "log",
+ "mimble_api",
+ "mimble_core",
+ "mimble_keychain",
+ "mimble_p2p",
+ "mimble_util",
+ "mimble_wallet_config",
+ "mimble_wallet_util",
+ "rand 0.6.5",
+ "regex",
+ "ring",
+ "ripemd160",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "serial_test",
+ "sha2 0.7.1",
+ "sha3",
+ "signature",
+ "strum",
+ "strum_macros",
+ "uuid",
+]
+
+[[package]]
+name = "mimble_wallet_util"
+version = "3.2.2"
+dependencies = [
+ "data-encoding",
+ "ed25519-dalek",
+ "failure",
+ "failure_derive",
+ "mimble_api",
+ "mimble_chain",
+ "mimble_core",
+ "mimble_keychain",
+ "mimble_store",
+ "mimble_util",
+ "pretty_assertions",
+ "rand 0.6.5",
+ "serde",
+ "serde_derive",
+ "sha3",
+]
+
+[[package]]
 name = "mime"
 version = "0.3.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2186,34 +2214,6 @@ dependencies = [
  "unicode-normalization",
  "unicode-width",
  "winapi 0.3.9",
-]
-
-[[package]]
-name = "mwc_wallet"
-version = "3.2.1"
-dependencies = [
- "built",
- "clap",
- "easy-jsonrpc",
- "failure",
- "failure_derive",
- "grin_wallet_api",
- "grin_wallet_config",
- "grin_wallet_controller",
- "grin_wallet_impls",
- "grin_wallet_libwallet",
- "grin_wallet_util",
- "lazy_static",
- "linefeed",
- "log",
- "prettytable-rs",
- "rpassword",
- "rustyline",
- "semver",
- "serde",
- "serde_derive",
- "serde_json",
- "url 1.7.2",
 ]
 
 [[package]]

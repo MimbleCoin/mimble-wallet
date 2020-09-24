@@ -21,12 +21,12 @@
 #![deny(non_snake_case)]
 #![deny(unused_mut)]
 
-use grin_wallet_config as config;
-use grin_wallet_util::grin_core as core;
-use grin_wallet_util::grin_keychain as keychain;
-use grin_wallet_util::grin_util as util;
-extern crate grin_wallet_impls as impls;
-extern crate grin_wallet_libwallet as libwallet;
+use mimble_wallet_config as config;
+use mimble_wallet_util::mimble_core as core;
+use mimble_wallet_util::mimble_keychain as keychain;
+use mimble_wallet_util::mimble_util as util;
+extern crate mimble_wallet_impls as impls;
+extern crate mimble_wallet_libwallet as libwallet;
 
 extern crate failure_derive;
 #[macro_use]
