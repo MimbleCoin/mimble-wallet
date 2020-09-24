@@ -127,7 +127,7 @@ mod tests {
 	use mimble_core::global;
 	use mimble_core::global::ChainTypes;
 
-	const mimble_UNIT: u64 = 1_000_000_000;
+	const MIMBLE_UNIT: u64 = 1_000_000_000;
 
 	fn keychain(idx: u8) -> ExtKeychain {
 		let seed_sell: String = format!("fixed0rng0for0testing0purposes0{}", idx % 10);
@@ -144,11 +144,11 @@ mod tests {
 			redeem_nonce: key(kc, 1, 3),
 			role_context: RoleContext::Seller(SellerContext {
 				inputs: vec![
-					(key_id(0, 1), None, 60 * mimble_UNIT),
-					(key_id(0, 2), None, 60 * mimble_UNIT),
+					(key_id(0, 1), None, 60 * MIMBLE_UNIT),
+					(key_id(0, 2), None, 60 * MIMBLE_UNIT),
 				],
 				change_output: key_id(0, 3),
-				change_amount: 20 * mimble_UNIT, // selling 100 coins, so 20 will be left
+				change_amount: 20 * MIMBLE_UNIT, // selling 100 coins, so 20 will be left
 				refund_output: key_id(0, 4),
 				secondary_context: SecondarySellerContext::Btc(BtcSellerContext {
 					cosign: key_id(0, 5),
@@ -435,7 +435,7 @@ mod tests {
 			.create_swap_offer(
 				&kc_sell,
 				&ctx_sell,
-				100 * mimble_UNIT,
+				100 * MIMBLE_UNIT,
 				3_000_000,
 				Currency::Btc,
 				secondary_redeem_address,
@@ -494,7 +494,7 @@ mod tests {
 		let nc = TestNodeClient::new(300_000);
 		let btc_nc = TestBtcNodeClient::new(500_000);
 
-		let amount = 100 * mimble_UNIT;
+		let amount = 100 * MIMBLE_UNIT;
 		let btc_amount_1 = 2_000_000;
 		let btc_amount_2 = 1_000_000;
 		let btc_amount = btc_amount_1 + btc_amount_2;
@@ -1533,7 +1533,7 @@ mod tests {
 		let nc = TestNodeClient::new(300_000);
 		let btc_nc = TestBtcNodeClient::new(500_000);
 
-		let amount = 100 * mimble_UNIT;
+		let amount = 100 * MIMBLE_UNIT;
 		let btc_amount_1 = 2_000_000;
 		let btc_amount_2 = 1_000_000;
 		let btc_amount_plus = 10_000;
