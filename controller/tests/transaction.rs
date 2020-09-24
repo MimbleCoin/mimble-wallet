@@ -71,7 +71,7 @@ fn basic_transaction_api(test_dir: &'static str) -> Result<(), wallet::Error> {
 	});
 
 	// few values to keep things shorter
-	let reward = core::consensus::MWC_FIRST_GROUP_REWARD;
+	let reward = core::consensus::MIMBLE_FIRST_GROUP_REWARD;
 	let cm = global::coinbase_maturity();
 	// mine a few blocks
 	let _ = test_framework::award_blocks_to_wallet(&chain, wallet1.clone(), mask1, 10, false);
@@ -94,7 +94,7 @@ fn basic_transaction_api(test_dir: &'static str) -> Result<(), wallet::Error> {
 
 	// assert wallet contents
 	// and a single use api for a send command
-	let amount = core::consensus::MWC_FIRST_GROUP_REWARD;
+	let amount = core::consensus::MIMBLE_FIRST_GROUP_REWARD;
 	let mut slate = Slate::blank(1);
 	wallet::controller::owner_single_use(Some(wallet1.clone()), mask1, None, |sender_api, m| {
 		// note this will increment the block count as part of the transaction "Posting"
@@ -257,7 +257,7 @@ fn basic_transaction_api(test_dir: &'static str) -> Result<(), wallet::Error> {
 			..Default::default()
 		};
 		let est = sender_api.init_send_tx(m, init_args, None, 1)?;
-		assert_eq!(est.amount, 10 * core::consensus::MWC_FIRST_GROUP_REWARD);
+		assert_eq!(est.amount, 10 * core::consensus::MIMBLE_FIRST_GROUP_REWARD);
 		assert_eq!(est.fee, 4_000_000);
 
 		let init_args = InitTxArgs {
@@ -271,7 +271,7 @@ fn basic_transaction_api(test_dir: &'static str) -> Result<(), wallet::Error> {
 			..Default::default()
 		};
 		let est = sender_api.init_send_tx(m, init_args, None, 1)?;
-		assert_eq!(est.amount, core::consensus::MWC_FIRST_GROUP_REWARD * 3);
+		assert_eq!(est.amount, core::consensus::MIMBLE_FIRST_GROUP_REWARD * 3);
 		assert_eq!(est.fee, 6_000_000);
 
 		Ok(())
@@ -380,12 +380,12 @@ fn tx_rollback(test_dir: &'static str) -> Result<(), wallet::Error> {
 	});
 
 	// few values to keep things shorter
-	let reward = core::consensus::MWC_FIRST_GROUP_REWARD;
+	let reward = core::consensus::MIMBLE_FIRST_GROUP_REWARD;
 	let cm = global::coinbase_maturity(); // assume all testing precedes soft fork height
 									  // mine a few blocks
 	let _ = test_framework::award_blocks_to_wallet(&chain, wallet1.clone(), mask1, 5, false);
 
-	let amount = core::consensus::MWC_FIRST_GROUP_REWARD / 2;
+	let amount = core::consensus::MIMBLE_FIRST_GROUP_REWARD / 2;
 	let mut slate = Slate::blank(1);
 	wallet::controller::owner_single_use(Some(wallet1.clone()), mask1, None, |sender_api, m| {
 		// note this will increment the block count as part of the transaction "Posting"

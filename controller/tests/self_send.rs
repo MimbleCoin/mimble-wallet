@@ -57,7 +57,7 @@ fn self_send_test_impl(test_dir: &'static str) -> Result<(), wallet::Error> {
 	});
 
 	// few values to keep things shorter
-	let reward = core::consensus::MWC_FIRST_GROUP_REWARD;
+	let reward = core::consensus::MIMBLE_FIRST_GROUP_REWARD;
 
 	// add some accounts
 	wallet::controller::owner_single_use(Some(wallet1.clone()), mask1, None, |api, m| {

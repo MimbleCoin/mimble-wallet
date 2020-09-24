@@ -12,14 +12,14 @@
 // limitations under the License.
 
 //! core::libtx specific tests
-use grin_wallet_libwallet::Context;
-use grin_wallet_util::grin_core::core::transaction;
-use grin_wallet_util::grin_core::libtx::{aggsig, proof};
-use grin_wallet_util::grin_keychain::{
+use mimble_wallet_libwallet::Context;
+use mimble_wallet_util::mimble_core::core::transaction;
+use mimble_wallet_util::mimble_core::libtx::{aggsig, proof};
+use mimble_wallet_util::mimble_keychain::{
 	BlindSum, BlindingFactor, ExtKeychain, ExtKeychainPath, Keychain, SwitchCommitmentType,
 };
-use grin_wallet_util::grin_util::secp;
-use grin_wallet_util::grin_util::secp::key::{PublicKey, SecretKey};
+use mimble_wallet_util::mimble_util::secp;
+use mimble_wallet_util::mimble_util::secp::key::{PublicKey, SecretKey};
 use rand::thread_rng;
 
 fn kernel_sig_msg() -> secp::Message {
